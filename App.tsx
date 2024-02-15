@@ -16,6 +16,7 @@ import Login from './src/screens/auth/Login';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import OrgSignup from './src/screens/auth/OrgSignup';
+import ForgotPassword from './src/screens/auth/ForgotPassword';
 
 const Stack = createNativeStackNavigator();
 
@@ -25,9 +26,10 @@ function App(): React.JSX.Element {
       <AuthProvider>
         <Provider store={store}>
           <NavigationContainer>
-            <Stack.Navigator>
+            <Stack.Navigator screenOptions={{headerShown: false}}>
               <Stack.Screen name="Login" component={Login} />
               <Stack.Screen name="Signup" component={OrgSignup} />
+              <Stack.Screen name="Forgot" component={ForgotPassword} />
             </Stack.Navigator>
           </NavigationContainer>
         </Provider>

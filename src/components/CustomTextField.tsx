@@ -17,15 +17,17 @@ export default CustomTextField;
 const styles = StyleSheet.create({
   fieldContainer: {
     padding: 4,
+    width: '100%',
   },
   label: {
     fontSize: 14,
+    fontWeight: '600',
     color: COLORS.black,
     marginLeft: 4,
     marginBottom: 8,
   },
   field: {
-    borderRadius: 12,
+    borderRadius: 8,
     borderColor: COLORS.borderColor,
     borderWidth: 1,
     paddingHorizontal: 14,

@@ -6,11 +6,15 @@ import {ORG_SIGNUP_ACTIONS} from '../../../constants';
 import {countriesData} from '../../../constants/countriesData';
 import {FormAction, FormState} from '../../../enums/auth';
 
+import {registerStyles} from '../../../styles/signupStyles';
+import CustomButton from '../../../components/CustomButton';
+
 interface PersonalProps {
   formData: FormState;
   dispatch: React.Dispatch<FormAction>;
+  setActiveStep: React.Dispatch<React.SetStateAction<number>>;
 }
-const Personal = ({formData, dispatch}: PersonalProps) => {
+const Personal = ({formData, dispatch, setActiveStep}: PersonalProps) => {
   const placeholder = {
     label: 'Select an option...',
     value: null,
@@ -21,8 +25,12 @@ const Personal = ({formData, dispatch}: PersonalProps) => {
     value: option.code,
   }));
 
+  const handleNext = async () => {
+    setActiveStep(2);
+  };
+
   return (
-    <View style={{flex: 1}}>
+    <View style={registerStyles.container}>
       <CustomTextField
         label="Name"
         placeholder="Name"
@@ -57,6 +65,8 @@ const Personal = ({formData, dispatch}: PersonalProps) => {
         placeholder={placeholder}
         options={formattedOptions}
       />
+
+      <CustomButton title="Continue" onPress={handleNext} />
     </View>
   );
 };

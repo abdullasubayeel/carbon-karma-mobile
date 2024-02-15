@@ -3,16 +3,20 @@ import React, {useState} from 'react';
 import CustomTextField from '../../../components/CustomTextField';
 import {FormAction, FormState} from '../../../enums/auth';
 import {ORG_SIGNUP_ACTIONS} from '../../../constants';
+import {registerStyles} from '../../../styles/signupStyles';
+import CustomButton from '../../../components/CustomButton';
 
 interface CredentialsProps {
   formData: FormState;
   dispatch: React.Dispatch<FormAction>;
+  setActiveStep: React.Dispatch<React.SetStateAction<number>>;
 }
-const Credentials = ({formData, dispatch}: CredentialsProps) => {
+const Credentials = ({formData, dispatch, setActiveStep}: CredentialsProps) => {
   const [cPass, setCPass] = useState('');
 
+  const handleNext = async () => {};
   return (
-    <View style={{flex: 1}}>
+    <View style={registerStyles.container}>
       <CustomTextField
         label="Your Email"
         placeholder="abc@gmail.com"
@@ -36,6 +40,8 @@ const Credentials = ({formData, dispatch}: CredentialsProps) => {
         value={cPass}
         textContentType="password"
         secureTextEntry={true}></CustomTextField>
+
+      <CustomButton title="Submit" onPress={handleNext} />
     </View>
   );
 };

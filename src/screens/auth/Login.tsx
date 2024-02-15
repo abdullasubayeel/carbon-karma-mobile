@@ -4,8 +4,10 @@ import {
   Image,
   Pressable,
   SafeAreaView,
+  ScrollView,
   Text,
   TextInput,
+  TouchableOpacity,
   View,
 } from 'react-native';
 import {useLoginMutation} from '../../api/auth/authApiSlice';
@@ -14,6 +16,8 @@ import CustomTextField from '../../components/CustomTextField';
 import CustomButton from '../../components/CustomButton';
 import CustomCheckbox from '../../components/CustomCheckbox';
 
+import Icon from 'react-native-vector-icons/AntDesign';
+import FAIcon from 'react-native-vector-icons/FontAwesome5';
 const illustration = require('../../assets/images/ck-illustration.png');
 
 function Login({navigation}: any) {
@@ -69,13 +73,29 @@ function Login({navigation}: any) {
             rememberMe={rememberMe}
             title="Remember Me"
           />
-          <Pressable onPress={() => navigation.navigate('Signup')}>
-            <Text>New here? Register</Text>
+          <Pressable onPress={() => navigation.navigate('Forgot')}>
+            <Text style={authStyles.primaryText}>Forgot Password?</Text>
           </Pressable>
         </View>
         {error && <Text>{error}</Text>}
 
         <CustomButton title="Login" onPress={handleSubmit}></CustomButton>
+      </View>
+      <Text>or</Text>
+
+      <View style={authStyles.authContainers}>
+        <TouchableOpacity style={authStyles.googleTile}>
+          <Icon name="google" size={18} color={'#C93F10'} />
+        </TouchableOpacity>
+        <TouchableOpacity style={authStyles.microsoftTile}>
+          <FAIcon name="microsoft" size={18} color={'#335DA7'} />
+        </TouchableOpacity>
+      </View>
+      <View style={authStyles.signupContainers}>
+        <Text style={authStyles.lightText}>Don't have an account?{'  '}</Text>
+        <Pressable onPress={() => navigation.navigate('Signup')}>
+          <Text style={authStyles.primaryText}>Sign up</Text>
+        </Pressable>
       </View>
     </SafeAreaView>
   );

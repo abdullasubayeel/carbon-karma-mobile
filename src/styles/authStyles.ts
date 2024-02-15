@@ -7,13 +7,17 @@ const authStyles = StyleSheet.create({
     backgroundColor: COLORS.backgroundColor,
     alignItems: 'center',
   },
+  heading: {
+    fontWeight: '800',
+    fontSize: 28,
+    color: '#666',
+  },
   tagline: {
     fontWeight: '700',
     fontSize: 20,
     color: '#666',
   },
   formContainer: {
-    flex: 1,
     paddingHorizontal: 24,
     paddingVertical: 12,
     width: '100%',
@@ -25,11 +29,56 @@ const authStyles = StyleSheet.create({
     margin: 24,
     justifySelf: 'center',
   },
+  primaryText: {
+    color: COLORS.primaryColor,
+    fontWeight: '400',
+    fontSize: 12,
+  },
   helperTextContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
   },
+  lightText: {
+    color: '#666',
+    fontWeight: '400',
+    alignItems: 'center',
+  },
+
+  authContainers: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    gap: 24,
+    marginVertical: 8,
+  },
+  signupContainers: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginVertical: 8,
+  },
+  googleTile: {
+    backgroundColor: '#F8E2E2',
+    paddingVertical: 14,
+    paddingHorizontal: 20,
+    borderRadius: 24,
+  },
+  microsoftTile: {
+    backgroundColor: '#E5E7EB',
+    paddingVertical: 14,
+    paddingHorizontal: 20,
+    borderRadius: 24,
+  },
+  forgotContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    backgroundColor: COLORS.backgroundColor,
+    alignItems: 'center',
+    paddingHorizontal: 16,
+    gap: 28,
+  },
+
+  //   Forgot Password
 });
 
 export {authStyles};

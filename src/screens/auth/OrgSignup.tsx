@@ -1,5 +1,5 @@
-import React, {useReducer} from 'react';
-import {View, StyleSheet} from 'react-native';
+import React, {useReducer, useState} from 'react';
+import {View, StyleSheet, Image} from 'react-native';
 
 import {ProgressSteps, ProgressStep} from 'react-native-progress-steps';
 import Personal from './helpers/Personal';
@@ -9,10 +9,15 @@ import {COLORS} from '../../constants/colors';
 import {ORG_SIGNUP_ACTIONS} from '../../constants';
 import {FormState} from '../../enums/auth';
 import {useCreateOrganisationMutation} from '../../api/endpoint/organizationEndpoint';
+import Verify from './helpers/Verify';
+
+const logo = require('../../assets/images/ck-logo.png');
 
 function OrgSignup({navigation}: any) {
   const [orgSignUp, {isLoading: isOrgLoading}] =
     useCreateOrganisationMutation();
+
+  const [activeStep, setActiveStep] = useState(0);
   function reducer(state: any, action: any): FormState {
     switch (action.type) {
       case ORG_SIGNUP_ACTIONS.fullname:
@@ -92,18 +97,54 @@ function OrgSignup({navigation}: any) {
   };
   return (
     <View style={{flex: 1}}>
+      <View
+        style={{
+          alignItems: 'center',
+          paddingTop: 12,
+        }}>
+        <Image
+          source={logo}
+          alt="Logo"
+          resizeMode="contain"
+          style={{width: 200, height: 34}}
+        />
+      </View>
+
       <ProgressSteps
         activeStepIconBorderColor={COLORS.primaryColor}
         activeLabelColor={COLORS.primaryColor}
         activeStepNumColor={COLORS.primaryColor}
         completedProgressBarColor={COLORS.primaryColor}
-        completedStepIconColor={COLORS.primaryColor}>
+        completedStepIconColor={COLORS.primaryColor}
+        activeStep={activeStep}
+        setActiveStep={setActiveStep}>
         <ProgressStep
-          label="Personal"
+          removeBtnRow={true}
+          label="Verify"
           nextBtnStyle={styles.nextBtnStyle}
           nextBtnTextStyle={styles.nextBtnTextStyle}>
           <View style={{flex: 1}}>
-            <Personal formData={formData} dispatch={dispatch} />
+            <Verify
+              formData={formData}
+              dispatch={dispatch}
+              setActiveStep={setActiveStep}
+            />
+          </View>
+        </ProgressStep>
+
+        <ProgressStep
+          label="Personal"
+          nextBtnStyle={styles.nextBtnStyle}
+          nextBtnTextStyle={styles.nextBtnTextStyle}
+          previousBtnStyle={styles.previousBtnStyle}
+          previousBtnTextStyle={styles.previousBtnTextStyle}
+          removeBtnRow={true}>
+          <View style={{flex: 1}}>
+            <Personal
+              formData={formData}
+              dispatch={dispatch}
+              setActiveStep={setActiveStep}
+            />
           </View>
         </ProgressStep>
 
@@ -112,9 +153,14 @@ function OrgSignup({navigation}: any) {
           nextBtnStyle={styles.nextBtnStyle}
           nextBtnTextStyle={styles.nextBtnTextStyle}
           previousBtnStyle={styles.previousBtnStyle}
-          previousBtnTextStyle={styles.previousBtnTextStyle}>
+          previousBtnTextStyle={styles.previousBtnTextStyle}
+          removeBtnRow={true}>
           <View>
-            <Organisation formData={formData} dispatch={dispatch} />
+            <Organisation
+              formData={formData}
+              dispatch={dispatch}
+              setActiveStep={setActiveStep}
+            />
           </View>
         </ProgressStep>
 
@@ -124,9 +170,14 @@ function OrgSignup({navigation}: any) {
           previousBtnTextStyle={styles.previousBtnTextStyle}
           nextBtnStyle={styles.nextBtnStyle}
           nextBtnTextStyle={styles.nextBtnTextStyle}
+          removeBtnRow={true}
           onSubmit={handleSubmit}>
           <View>
-            <Credentials formData={formData} dispatch={dispatch} />
+            <Credentials
+              formData={formData}
+              dispatch={dispatch}
+              setActiveStep={setActiveStep}
+            />
           </View>
         </ProgressStep>
       </ProgressSteps>

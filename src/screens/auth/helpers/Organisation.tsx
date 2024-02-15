@@ -6,19 +6,28 @@ import {sectorOptions} from '../../../constants/sectorOptions';
 import CustomImagePicker from '../../../components/CustomImagePicker';
 import {ORG_SIGNUP_ACTIONS} from '../../../constants';
 import {FormAction, FormState} from '../../../enums/auth';
+import {registerStyles} from '../../../styles/signupStyles';
+import CustomButton from '../../../components/CustomButton';
 
 interface OrganisationProps {
   formData: FormState;
   dispatch: React.Dispatch<FormAction>;
+  setActiveStep: React.Dispatch<React.SetStateAction<number>>;
 }
-const Organisation = ({formData, dispatch}: OrganisationProps) => {
+const Organisation = ({
+  formData,
+  dispatch,
+  setActiveStep,
+}: OrganisationProps) => {
   const placeholder = {
     label: 'Select an option...',
     value: '',
   };
-
+  const handleNext = () => {
+    setActiveStep(3);
+  };
   return (
-    <View style={{flex: 1}}>
+    <View style={registerStyles.container}>
       <CustomTextField
         label="Organisation Name"
         placeholder="ABC Enterprises"
@@ -57,6 +66,7 @@ const Organisation = ({formData, dispatch}: OrganisationProps) => {
           dispatch({type: ORG_SIGNUP_ACTIONS.logo, payload: assets[0]})
         }
       />
+      <CustomButton title="Continue" onPress={handleNext} />
     </View>
   );
 };
