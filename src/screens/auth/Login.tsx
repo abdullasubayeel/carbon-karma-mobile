@@ -18,10 +18,11 @@ import CustomCheckbox from '../../components/CustomCheckbox';
 
 import Icon from 'react-native-vector-icons/AntDesign';
 import FAIcon from 'react-native-vector-icons/FontAwesome5';
+import PasswordField from '../../components/PasswordField';
 const illustration = require('../../assets/images/ck-illustration.png');
 
 function Login({navigation}: any) {
-  const [login, {isLoading}] = useLoginMutation();
+  const [login, {isLoading: isLoginLoading}] = useLoginMutation();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
@@ -35,12 +36,20 @@ function Login({navigation}: any) {
     })
       .unwrap()
       .then((res: any) => {
-        console.log(res);
+        console.log('Response', res);
+        if (res?.user?.role === 'employee') {
+          navigation.navigate('EmpDashboard');
+        } else if (res?.user?.role === 'head') {
+          navigation.navigate('OrgDashboard');
+        }
       })
       .catch((err: any) => {
         console.log('Error:', err);
         setError(err.data.message || err.data.error);
       });
+
+    //Organization
+    //EMployee
   };
 
   useEffect(() => {
@@ -54,18 +63,20 @@ function Login({navigation}: any) {
         source={illustration}
         resizeMode="contain"
         alt="Illustration"></Image>
-      <Text style={authStyles.tagline}>"Protect Earth: Out Only Home!"</Text>
+      <Text style={authStyles.tagline}>"Protect Earth: Our Only Home!"</Text>
       <Text>#saveEarth</Text>
       <View style={authStyles.formContainer}>
         <CustomTextField
+          label="Email"
           placeholder="Email"
           onChangeText={(text: string) => setEmail(text)}
           value={email}></CustomTextField>
-        <CustomTextField
+        <PasswordField
+          label="Password"
           placeholder="Password"
           onChangeText={(text: string) => setPassword(text)}
           value={password}
-          textContentType="password"></CustomTextField>
+          textContentType="password"></PasswordField>
 
         <View style={authStyles.helperTextContainer}>
           <CustomCheckbox
@@ -79,7 +90,10 @@ function Login({navigation}: any) {
         </View>
         {error && <Text>{error}</Text>}
 
-        <CustomButton title="Login" onPress={handleSubmit}></CustomButton>
+        <CustomButton
+          isLoading={isLoginLoading}
+          title="Login"
+          onPress={handleSubmit}></CustomButton>
       </View>
       <Text>or</Text>
 

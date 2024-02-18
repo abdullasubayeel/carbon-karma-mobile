@@ -21,13 +21,12 @@ const authStyles = StyleSheet.create({
     paddingHorizontal: 24,
     paddingVertical: 12,
     width: '100%',
-    gap: 16,
+    gap: 8,
   },
   illustration: {
     height: '30%',
     width: '100%',
     margin: 24,
-    justifySelf: 'center',
   },
   primaryText: {
     color: COLORS.primaryColor,

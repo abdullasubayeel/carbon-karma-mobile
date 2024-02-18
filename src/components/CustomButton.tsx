@@ -1,4 +1,5 @@
 import {
+  ActivityIndicator,
   Button,
   Pressable,
   StyleSheet,
@@ -11,8 +12,15 @@ import {COLORS} from '../constants/colors';
 
 const CustomButton = (props: any) => {
   return (
-    <TouchableOpacity style={styles.buttonStyles} onPress={props.onPress}>
-      <Text style={styles.title}>{props.title}</Text>
+    <TouchableOpacity
+      disabled={props.isLoading}
+      style={styles.buttonStyles}
+      onPress={props.onPress}>
+      {props.isLoading ? (
+        <ActivityIndicator size={'small'} color={'#fff'} />
+      ) : (
+        <Text style={styles.title}>{props.title}</Text>
+      )}
     </TouchableOpacity>
   );
 };

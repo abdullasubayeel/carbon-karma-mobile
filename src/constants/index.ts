@@ -1,5 +1,5 @@
-// export const BASE_URL = 'https://carbon-karma-be.pacewisdom.in';
-export const BASE_URL = 'https://csns6w67-3000.inc1.devtunnels.ms';
+export const BASE_URL = 'https://carbon-karma-be.pacewisdom.in';
+// export const BASE_URL = 'https://csns6w67-3000.inc1.devtunnels.ms';
 
 export const ORG_SIGNUP_ACTIONS = {
   fullname: 'handlefullname',

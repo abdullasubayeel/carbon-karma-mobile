@@ -17,6 +17,11 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import OrgSignup from './src/screens/auth/OrgSignup';
 import ForgotPassword from './src/screens/auth/ForgotPassword';
+import EmpDashboard from './src/screens/employee/EmpDashboard';
+import OrgDashboard from './src/screens/organization/OrgDashboard';
+import OrgHeader from './src/screens/organization/helpers/OrgHeader';
+import {COLORS} from './src/constants/colors';
+import CarbonDashboard from './src/screens/employee/CarbonDashboard';
 
 const Stack = createNativeStackNavigator();
 
@@ -26,10 +31,35 @@ function App(): React.JSX.Element {
       <AuthProvider>
         <Provider store={store}>
           <NavigationContainer>
-            <Stack.Navigator screenOptions={{headerShown: false}}>
-              <Stack.Screen name="Login" component={Login} />
-              <Stack.Screen name="Signup" component={OrgSignup} />
-              <Stack.Screen name="Forgot" component={ForgotPassword} />
+            <Stack.Navigator>
+              <Stack.Screen
+                options={{headerShown: false}}
+                name="Login"
+                component={Login}
+              />
+              <Stack.Screen
+                options={{headerShown: false}}
+                name="Signup"
+                component={OrgSignup}
+              />
+              <Stack.Screen
+                options={{headerShown: false}}
+                name="Forgot"
+                component={ForgotPassword}
+              />
+              <Stack.Screen
+                name="OrgDashboard"
+                component={OrgDashboard}
+                options={{
+                  headerTitle: () => <OrgHeader />,
+                  headerBackVisible: false,
+                  headerShadowVisible: false,
+                  headerStyle: {
+                    backgroundColor: COLORS.lightGreen,
+                  },
+                }}
+              />
+              <Stack.Screen name="EmpDashboard" component={CarbonDashboard} />
             </Stack.Navigator>
           </NavigationContainer>
         </Provider>
