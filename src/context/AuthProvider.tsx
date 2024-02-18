@@ -7,8 +7,8 @@ import {
 } from 'react';
 
 interface AuthContextProps {
-  auth: any;
-  setAuth: Dispatch<SetStateAction<any>>;
+  auth: AuthType;
+  setAuth: Dispatch<SetStateAction<AuthType>>;
 
   lng: string;
   setLng: Dispatch<SetStateAction<string>>;
@@ -19,9 +19,23 @@ const AuthContext = createContext<AuthContextProps>({} as AuthContextProps);
 interface AuthProviderProps {
   children: ReactNode;
 }
-
+type AuthType = {
+  ID: string;
+  _id: string;
+  email: string;
+  refresh_token: string;
+  role: string;
+  token: string;
+};
 export const AuthProvider: React.FC<AuthProviderProps> = ({children}) => {
-  const [auth, setAuth] = useState<any>({});
+  const [auth, setAuth] = useState<AuthType>({
+    ID: '',
+    _id: '',
+    email: '',
+    refresh_token: '',
+    role: '',
+    token: '',
+  });
   const [lng, setLng] = useState<string>('en');
 
   return (

@@ -8,15 +8,33 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React from 'react';
+import React, {useContext, useLayoutEffect, useState} from 'react';
 import {orgStyles} from '../../styles/organizationStyles';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {COLORS} from '../../constants/colors';
 import {BarChart} from 'react-native-gifted-charts';
 import moment from 'moment';
 import EmployeeTile from './helpers/EmployeeTile';
+import AuthContext from '../../context/AuthProvider';
+import {
+  useGetEmployeesQuery,
+  useGetOrgDashboardMutation,
+} from '../../api/endpoint/organizationEndpoint';
+import CustomActivityIndicator from '../../components/CustomActivityIndicator';
+import {OrgDashboardResponse} from '../../enums/organization';
+import NeutralityCard from './helpers/NeutralityCard';
 
-const OrgDashboard = () => {
+const OrgDashboard = ({navigation}: any) => {
+  const {auth} = useContext(AuthContext);
+  const {data: employees, isLoading: isEmployeesLoading} = useGetEmployeesQuery(
+    auth.ID,
+  );
+  console.log('emloyees', employees);
+  const [getOrgDashboard, {isLoading: isOrgDashboardLoading}] =
+    useGetOrgDashboardMutation();
+
+  const [dashboardData, setDashboardData] = useState<OrgDashboardResponse>();
+
   const barData = [
     {
       value: 40,
@@ -135,108 +153,39 @@ const OrgDashboard = () => {
     },
   ];
 
-  const newArray: any = detailedGraph.slice(3, 8).map(obj => {
-    return [
-      {
-        label: moment(obj.date).format('MMM-YY'),
-        value: obj.transport,
-        spacing: 8,
-        labelWidth: 50,
+  const newArray: any = dashboardData?.carbonEmissionGraphData
+    .slice(3, 8)
+    .map(obj => {
+      return [
+        {
+          label: moment(obj.date).format('MMM-YY'),
+          value: obj.transport,
+          spacing: 8,
+          labelWidth: 50,
 
-        labelTextStyle: {color: 'gray'},
-        frontColor: '#177AD5',
-      },
-      {
-        label: obj.date,
-        value: obj.electricity,
-        spacing: 8,
-        frontColor: '#156900',
-      },
-      {
-        label: obj.date,
-        value: obj.machine,
-        spacing: 8,
-        frontColor: '#a57dca',
-      },
-      {
-        label: obj.date,
-        value: obj.utility,
-        spacing: 8,
-        frontColor: '#d1ac89',
-      },
-    ];
-  });
-
-  const employees = [
-    {
-      _id: '6593914804a255abf16c3372',
-      fullname: 'Shrilakshmi Shenoy',
-      Phone: '7996730193',
-      location: 'India',
-      about: 'Software Developer',
-      designation: 'TSE',
-      date: '24-11-2000',
-      is_delete: false,
-      role: 'head',
-      email: 'shrilakshmishenoy24@gmail.com',
-      organisationID: '6592c65302082856df0e51e2',
-      karma_points: 0,
-      carbon_emission: 0,
-      __v: 0,
-      password: '$2b$10$fb2YQICB7SblA.XuI1r2gON8TRp/kug40rm2BNnKeWr0mvwB.2Jzq',
-    },
-    {
-      _id: '6592ce9402082856df0e5af5',
-      fullname: 'Ashtral Goveas',
-      Phone: '9164992582',
-      location: 'India',
-      about: '.....',
-      date: '24-01-2024',
-      is_delete: false,
-      role: 'head',
-      email: 'ashtralgoveas@gmail.com',
-      organisationID: '6592c65302082856df0e51e2',
-      karma_points: 0,
-      carbon_emission: 0,
-      __v: 0,
-      password: '$2b$10$4voeZHEHgiI16Z82vp2C0OEx8QC63u9VdTIPvBoflRvK/FmBCAFvK',
-    },
-    {
-      _id: '6592ca8902082856df0e5527',
-      fullname: 'Subayeel',
-      Phone: '9740730152',
-      location: 'India',
-      about: 'Developer',
-      date: '15-01-1971',
-      is_delete: false,
-      role: 'employee',
-      email: 'abdula.s@pacewisdom.com',
-      organisationID: '6592c65302082856df0e51e2',
-      karma_points: 0,
-      carbon_emission: 0,
-      __v: 0,
-      password: '$2b$10$upJnJFCuVOPiIvZz9VsC0.ewHeUsy99fBH8IoptL4jpnHk76gZsrG',
-      profile: 'https://carbon-karma-be.pacewisdom.in/uploads/subayeel.jpeg',
-    },
-    {
-      _id: '6592c65302082856df0e51e5',
-      fullname: 'Abdullah Subayeel',
-      Phone: '9740730152',
-      location: 'India',
-      about: '',
-      is_delete: false,
-      role: 'head',
-      email: 'abdullahsubayeel2000@gmail.com',
-      password: '$2b$12$PcTDp8OilL2FSq0cw53TsObm5x1pb8YarQ0u46ntz6v1Pn9EI.3im',
-      organisationID: '6592c65302082856df0e51e2',
-      karma_points: -400,
-      carbon_emission: 2.79,
-      __v: 0,
-      resetToken:
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFiZHVsbGFoc3ViYXllZWwyMDAwQGdtYWlsLmNvbSIsImlhdCI6MTcwNzk4MjI4MywiZXhwIjoxNzA4MDAzODgzfQ.6-Z6_Q_zNxr8LRl1gU7w2RWUvfWG4jsHK03RgIO3xgs',
-      resetTokenExpiration: '2024-02-16T07:31:23.176Z',
-    },
-  ];
+          labelTextStyle: {color: 'gray'},
+          frontColor: '#177AD5',
+        },
+        {
+          label: obj.date,
+          value: obj.electricity,
+          spacing: 8,
+          frontColor: '#156900',
+        },
+        {
+          label: obj.date,
+          value: obj.machine,
+          spacing: 8,
+          frontColor: '#a57dca',
+        },
+        {
+          label: obj.date,
+          value: obj.utility,
+          spacing: 8,
+          frontColor: '#d1ac89',
+        },
+      ];
+    });
 
   const updatedArray = [].concat(...newArray);
 
@@ -300,6 +249,23 @@ const OrgDashboard = () => {
     );
   };
 
+  useLayoutEffect(() => {
+    async function getDashboard() {
+      const response = await getOrgDashboard({
+        fromDate: '2023-07-18T05:54:59.154Z',
+        organizationId: '6592c65302082856df0e51e2',
+        toDate: '2024-02-18T05:54:59.154Z',
+      }).unwrap();
+
+      setDashboardData(response);
+    }
+    getDashboard();
+  }, []);
+
+  if (isEmployeesLoading || isOrgDashboardLoading) {
+    <CustomActivityIndicator message="Fetching Dashboard data..." />;
+  }
+
   return (
     <ScrollView>
       <View style={orgStyles.dashboardBodyContainer}>
@@ -307,37 +273,46 @@ const OrgDashboard = () => {
         <View style={orgStyles.wideContainer}>
           <View>
             <Text style={orgStyles.small}>Total Emission (this Month)</Text>
-            <Text style={orgStyles.largeText}>120,000</Text>
+            <Text style={orgStyles.largeText}>
+              {dashboardData?.totalCarbonEmission} kg
+            </Text>
           </View>
-          <TouchableOpacity style={orgStyles.analyticsButton}>
+          <TouchableOpacity
+            onPress={() => navigation.navigate('Survey')}
+            style={orgStyles.analyticsButton}>
             <Icon
               name="analytics-outline"
               color={COLORS.primaryColor}
               size={18}
             />
-            <Text style={orgStyles.analyticsText}>Analytics</Text>
+            <Text style={orgStyles.analyticsText}>Take Survey</Text>
           </TouchableOpacity>
         </View>
 
         {/* Neutrality Card */}
         <View style={orgStyles.cardContainer}>
-          <View style={orgStyles.neutralityCard}>
-            <Icon
-              name="checkmark-circle"
-              color={COLORS.primaryColor}
-              size={100}
-            />
-            <Text>Your Orgnaization is Carbon Neutral.</Text>
-            <Text style={orgStyles.small}>Jul 2023 - Feb 2024</Text>
-          </View>
+          <NeutralityCard
+            date={dashboardData?.carbonNuetrality.date}
+            carbonNeutral={dashboardData?.carbonNuetrality.carbonNuetral}
+            message={dashboardData?.carbonNuetrality.message}
+          />
           <View style={{gap: 8, flex: 1}}>
             <View style={orgStyles.offsetCard}>
               <Text style={orgStyles.small}>Offset</Text>
-              <Text style={orgStyles.boldText}>$ 12.01</Text>
+              <Text style={orgStyles.boldText}>
+                ₹ {dashboardData?.totalOffsetContribution}
+              </Text>
             </View>
             <View style={orgStyles.empOrgCard}>
-              <Text style={orgStyles.small}>Emission</Text>
-              <Text style={orgStyles.boldText}>120 kg</Text>
+              <Text style={orgStyles.boldText}>CO2e</Text>
+              <Text style={orgStyles.small}>Organization</Text>
+              <Text style={orgStyles.small}>
+                {dashboardData?.totalOrgCarbonEmission} kg
+              </Text>
+              <Text style={orgStyles.small}>Empolyees</Text>
+              <Text style={orgStyles.small}>
+                {dashboardData?.totalEmployeeCarbonEmission} kg
+              </Text>
             </View>
           </View>
         </View>
@@ -366,7 +341,6 @@ const OrgDashboard = () => {
             width={Dimensions.get('screen').width * 0.8}
           />
         </View>
-        {/* <EmployeeTile {...employees[0]} /> */}
 
         <Text style={orgStyles.boldText}>Employees</Text>
         <FlatList

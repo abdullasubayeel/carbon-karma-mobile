@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {
   Button,
   Image,
@@ -19,9 +19,12 @@ import CustomCheckbox from '../../components/CustomCheckbox';
 import Icon from 'react-native-vector-icons/AntDesign';
 import FAIcon from 'react-native-vector-icons/FontAwesome5';
 import PasswordField from '../../components/PasswordField';
+import AuthContext from '../../context/AuthProvider';
 const illustration = require('../../assets/images/ck-illustration.png');
+import SplashScreen from 'react-native-splash-screen';
 
 function Login({navigation}: any) {
+  const {setAuth} = useContext(AuthContext);
   const [login, {isLoading: isLoginLoading}] = useLoginMutation();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -37,6 +40,9 @@ function Login({navigation}: any) {
       .unwrap()
       .then((res: any) => {
         console.log('Response', res);
+        if (res?.user) {
+          setAuth(res.user);
+        }
         if (res?.user?.role === 'employee') {
           navigation.navigate('EmpDashboard');
         } else if (res?.user?.role === 'head') {
@@ -55,6 +61,10 @@ function Login({navigation}: any) {
   useEffect(() => {
     setError('');
   }, [email, password]);
+
+  useEffect(() => {
+    SplashScreen.hide();
+  }, []);
 
   return (
     <SafeAreaView style={authStyles.loginContainer}>

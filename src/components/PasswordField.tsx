@@ -10,7 +10,7 @@ import {COLORS} from '../constants/colors';
 import Icon from 'react-native-vector-icons/Feather';
 const PasswordField = (props: any) => {
   const [visibile, setVisible] = useState(false);
-  console.log(visibile);
+
   return (
     <View style={styles.fieldContainer}>
       {props.label && <Text style={styles.label}>{props.label}</Text>}

@@ -5,7 +5,7 @@
  * @format
  */
 
-import React from 'react';
+import React, {useEffect} from 'react';
 
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 
@@ -22,10 +22,14 @@ import OrgDashboard from './src/screens/organization/OrgDashboard';
 import OrgHeader from './src/screens/organization/helpers/OrgHeader';
 import {COLORS} from './src/constants/colors';
 import CarbonDashboard from './src/screens/employee/CarbonDashboard';
+import SplashScreen from 'react-native-splash-screen';
 
 const Stack = createNativeStackNavigator();
 
 function App(): React.JSX.Element {
+  useEffect(() => {
+    SplashScreen.hide();
+  }, []);
   return (
     <GestureHandlerRootView style={{flex: 1}}>
       <AuthProvider>
