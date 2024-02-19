@@ -1,11 +1,19 @@
 import React from 'react';
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  ToastAndroid,
+} from 'react-native';
 import {COLORS} from '../../../../constants/colors';
+import moment from 'moment';
 
 type MonthViewProps = {
-  availableMonths: string[];
+  year: string;
+  dates: string[];
 };
-const MonthView = ({availableMonths}: MonthViewProps) => {
+const MonthView = ({dates, year, navigation}: any) => {
   const months = [
     'Jan',
     'Feb',
@@ -21,18 +29,31 @@ const MonthView = ({availableMonths}: MonthViewProps) => {
     'Dec',
   ];
 
-  const dotStatus = {};
+  const avlMonths = dates.map((date: any) => moment(date).format('MMM'));
 
+  const detailsNavigate = (date: string) => {
+    const curDate = dates.find(
+      (obj: any) => moment(obj).format('MMM YYYY') === `${date} ${year}`,
+    );
+
+    if (!curDate) {
+      return ToastAndroid.show(
+        'No Survey Data on given date',
+        ToastAndroid.SHORT,
+      );
+    }
+    navigation.navigate('OrgSurveysDetails', {date: curDate});
+  };
   return (
     <View style={styles.container}>
       {months.map((month, index) => (
-        <TouchableOpacity key={index} style={styles.monthContainer}>
+        <TouchableOpacity
+          key={index}
+          style={styles.monthContainer}
+          onPress={() => detailsNavigate(month)}>
           <Text style={styles.monthText}>{month}</Text>
           <View
-            style={[
-              styles.dot,
-              availableMonths.includes(month) && styles.activeDot,
-            ]}
+            style={[styles.dot, avlMonths.includes(month) && styles.activeDot]}
           />
         </TouchableOpacity>
       ))}

@@ -32,7 +32,7 @@ function Login({navigation}: any) {
   const [error, setError] = useState('');
 
   const handleSubmit = async () => {
-    return navigation.navigate('OrgDashboard');
+    // return navigation.navigate('OrgDashboard');
 
     await login({
       email,
@@ -41,7 +41,6 @@ function Login({navigation}: any) {
     })
       .unwrap()
       .then((res: any) => {
-        console.log('Response', res);
         if (res?.user) {
           setAuth(res.user);
         }
@@ -55,9 +54,6 @@ function Login({navigation}: any) {
         console.log('Error:', err);
         setError(err.data.message || err.data.error);
       });
-
-    //Organization
-    //EMployee
   };
 
   useEffect(() => {

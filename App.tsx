@@ -24,6 +24,7 @@ import {COLORS} from './src/constants/colors';
 import CarbonDashboard from './src/screens/employee/CarbonDashboard';
 import SplashScreen from 'react-native-splash-screen';
 import OrgSurveyDashboard from './src/screens/organization/surveys/OrgSurveyDashboard';
+import OrgSurveyDetails from './src/screens/organization/surveys/helpers/OrgSurveyDetails';
 
 const Stack = createNativeStackNavigator();
 
@@ -67,6 +68,13 @@ function App(): React.JSX.Element {
               <Stack.Screen
                 name="Organisation Surveys"
                 component={OrgSurveyDashboard}
+                options={{
+                  headerShown: false,
+                }}
+              />
+              <Stack.Screen
+                name="OrgSurveysDetails"
+                component={OrgSurveyDetails}
                 options={{
                   headerShown: false,
                 }}

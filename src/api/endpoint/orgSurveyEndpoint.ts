@@ -10,6 +10,11 @@ const orgnaisationEndpoint = apiSlice.injectEndpoints({
       query: orgId => `organisation/my-survey-by-date?organisationId=${orgId}`,
       providesTags: ['OrgSubmittedSurveys'],
     }),
+    getSurveysDetailsByDate: builder.query({
+      query: (data: any) =>
+        `/organisation/survey-by-date?organizationId=${data.orgId}&date=${data.date}`,
+      providesTags: ['OrgSubmittedSurveys'],
+    }),
 
     createOrganisation: builder.mutation({
       query: data => ({
@@ -21,4 +26,5 @@ const orgnaisationEndpoint = apiSlice.injectEndpoints({
   }),
 });
 
-export const {useGetSubmittedSurveysQuery} = orgnaisationEndpoint;
+export const {useGetSubmittedSurveysQuery, useGetSurveysDetailsByDateQuery} =
+  orgnaisationEndpoint;

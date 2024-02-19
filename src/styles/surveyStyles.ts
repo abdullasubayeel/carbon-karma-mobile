@@ -35,7 +35,7 @@ export const surveyStyles = StyleSheet.create({
     padding: 12,
     borderColor: COLORS.borderColor,
     borderWidth: 1,
-
+    position: 'relative',
     flexWrap: 'wrap',
     flexDirection: 'row',
     alignItems: 'flex-start',
@@ -59,5 +59,14 @@ export const surveyStyles = StyleSheet.create({
   },
   emissionTile: {
     padding: 22,
+  },
+
+  surveyImage: {
+    position: 'absolute',
+    top: 0,
+    right: 12,
+    resizeMode: 'contain',
+    height: 120,
+    width: 120,
   },
 });

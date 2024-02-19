@@ -157,7 +157,6 @@ const OrgDashboard = ({navigation}: any) => {
       />
     );
   }
-
   return (
     <ScrollView>
       <View style={orgStyles.dashboardBodyContainer}>
@@ -239,7 +238,7 @@ const OrgDashboard = ({navigation}: any) => {
         <Text style={orgStyles.boldText}>Employees</Text>
         <FlatList
           horizontal={true}
-          data={employees}
+          data={employees.results.employees ?? []}
           keyExtractor={item => item._id}
           style={{marginVertical: 12, paddingVertical: 8}}
           ItemSeparatorComponent={() => <View style={{width: 8}} />}

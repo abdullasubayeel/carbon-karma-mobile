@@ -71,7 +71,6 @@ function OrgSignup({navigation}: any) {
   const handleSubmit = async () => {
     try {
       const form = new FormData();
-      console.log(formData.logo);
       const imageBody = await getBlob(formData?.logo?.uri ?? '');
       form.append('fullname', formData.fullname);
       form.append('location', formData.location);
@@ -89,8 +88,6 @@ function OrgSignup({navigation}: any) {
       });
 
       const response = await orgSignUp(form).unwrap();
-
-      console.log('response', response);
     } catch (error) {
       console.log(error);
     }
