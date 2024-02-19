@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, {useContext, useLayoutEffect, useState} from 'react';
+import React, {useContext, useEffect, useLayoutEffect, useState} from 'react';
 import {orgStyles} from '../../styles/organizationStyles';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {COLORS} from '../../constants/colors';
@@ -23,135 +23,18 @@ import {
 import CustomActivityIndicator from '../../components/CustomActivityIndicator';
 import {OrgDashboardResponse} from '../../enums/organization';
 import NeutralityCard from './helpers/NeutralityCard';
+import OctiIcon from 'react-native-vector-icons/Octicons';
 
 const OrgDashboard = ({navigation}: any) => {
   const {auth} = useContext(AuthContext);
   const {data: employees, isLoading: isEmployeesLoading} = useGetEmployeesQuery(
     auth.ID,
   );
-  console.log('emloyees', employees);
+
   const [getOrgDashboard, {isLoading: isOrgDashboardLoading}] =
     useGetOrgDashboardMutation();
 
   const [dashboardData, setDashboardData] = useState<OrgDashboardResponse>();
-
-  const barData = [
-    {
-      value: 40,
-      label: 'Jan',
-      spacing: 2,
-      labelWidth: 30,
-      labelTextStyle: {color: 'gray'},
-      frontColor: '#177AD5',
-    },
-    {value: 20, spacing: 2, frontColor: '#ED6665'},
-    {value: 20, spacing: 2, frontColor: '#ED6665'},
-    {value: 20, frontColor: '#ED6665'},
-    {
-      value: 50,
-      label: 'Feb',
-      spacing: 2,
-      labelWidth: 30,
-      labelTextStyle: {color: 'gray'},
-      frontColor: '#177AD5',
-    },
-    {value: 40, frontColor: '#ED6665'},
-    {
-      value: 75,
-      label: 'Mar',
-      spacing: 2,
-      labelWidth: 30,
-      labelTextStyle: {color: 'gray'},
-      frontColor: '#177AD5',
-    },
-    {value: 25, frontColor: '#ED6665'},
-    {
-      value: 30,
-      label: 'Apr',
-      spacing: 2,
-      labelWidth: 30,
-      labelTextStyle: {color: 'gray'},
-      frontColor: '#177AD5',
-    },
-    {value: 20, frontColor: '#ED6665'},
-    {
-      value: 60,
-      label: 'May',
-      spacing: 2,
-      labelWidth: 30,
-      labelTextStyle: {color: 'gray'},
-      frontColor: '#177AD5',
-    },
-    {value: 40, frontColor: '#ED6665'},
-    {
-      value: 65,
-      label: 'Jun',
-      spacing: 2,
-      labelWidth: 30,
-      labelTextStyle: {color: 'gray'},
-      frontColor: '#177AD5',
-    },
-    {value: 30, frontColor: '#ED6665'},
-  ];
-
-  const detailedGraph = [
-    {
-      date: '2023-07-01',
-      transport: 0,
-      electricity: 0,
-      machine: 0,
-      utility: 0,
-    },
-    {
-      date: '2023-08-01',
-      transport: 0,
-      electricity: 0,
-      machine: 0,
-      utility: 0,
-    },
-    {
-      date: '2023-09-01',
-      transport: 0,
-      electricity: 0,
-      machine: 0,
-      utility: 0,
-    },
-    {
-      date: '2023-10-01',
-      transport: 0,
-      electricity: 0,
-      machine: 0,
-      utility: 0,
-    },
-    {
-      date: '2023-11-01',
-      transport: 0,
-      electricity: 0,
-      machine: 0,
-      utility: 0,
-    },
-    {
-      date: '2023-12-01',
-      transport: 0,
-      electricity: 0,
-      machine: 0,
-      utility: 0,
-    },
-    {
-      date: '2024-01-01',
-      transport: 78.03,
-      electricity: 104.55,
-      machine: 79.2,
-      utility: 0.6799999999999999,
-    },
-    {
-      date: '2024-02-01',
-      transport: 0,
-      electricity: 0,
-      machine: 0,
-      utility: 0,
-    },
-  ];
 
   const newArray: any = dashboardData?.carbonEmissionGraphData
     .slice(3, 8)
@@ -187,7 +70,7 @@ const OrgDashboard = ({navigation}: any) => {
       ];
     });
 
-  const updatedArray = [].concat(...newArray);
+  const updatedArray = [].concat(...(newArray ?? []));
 
   const renderTitle = () => {
     return (
@@ -249,7 +132,11 @@ const OrgDashboard = ({navigation}: any) => {
     );
   };
 
-  useLayoutEffect(() => {
+  const surveyNavigate = () => {
+    navigation.navigate('Organisation Surveys');
+  };
+
+  useEffect(() => {
     async function getDashboard() {
       const response = await getOrgDashboard({
         fromDate: '2023-07-18T05:54:59.154Z',
@@ -263,7 +150,12 @@ const OrgDashboard = ({navigation}: any) => {
   }, []);
 
   if (isEmployeesLoading || isOrgDashboardLoading) {
-    <CustomActivityIndicator message="Fetching Dashboard data..." />;
+    return (
+      <CustomActivityIndicator
+        message="Fetching Dashboard data..."
+        size={'large'}
+      />
+    );
   }
 
   return (
@@ -278,7 +170,7 @@ const OrgDashboard = ({navigation}: any) => {
             </Text>
           </View>
           <TouchableOpacity
-            onPress={() => navigation.navigate('Survey')}
+            onPress={surveyNavigate}
             style={orgStyles.analyticsButton}>
             <Icon
               name="analytics-outline"
@@ -304,12 +196,14 @@ const OrgDashboard = ({navigation}: any) => {
               </Text>
             </View>
             <View style={orgStyles.empOrgCard}>
-              <Text style={orgStyles.boldText}>CO2e</Text>
-              <Text style={orgStyles.small}>Organization</Text>
-              <Text style={orgStyles.small}>
-                {dashboardData?.totalOrgCarbonEmission} kg
-              </Text>
-              <Text style={orgStyles.small}>Empolyees</Text>
+              <View style={{alignItems: 'center', marginBottom: 12}}>
+                <OctiIcon name="organization" size={24} />
+                <Text style={orgStyles.small}>
+                  {dashboardData?.totalOrgCarbonEmission} kg
+                </Text>
+              </View>
+
+              <OctiIcon name="people" size={24} />
               <Text style={orgStyles.small}>
                 {dashboardData?.totalEmployeeCarbonEmission} kg
               </Text>
@@ -328,7 +222,7 @@ const OrgDashboard = ({navigation}: any) => {
         {renderTitle()}
         <View style={orgStyles.detailedGraph}>
           <BarChart
-            data={updatedArray}
+            data={updatedArray ?? []}
             barWidth={8}
             spacing={24}
             roundedTop

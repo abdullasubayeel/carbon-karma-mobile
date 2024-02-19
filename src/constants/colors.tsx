@@ -6,7 +6,7 @@ export const COLORS = {
   black: '#555',
   borderColor: '#bbb',
   lightGreen: '#F4FAF8',
-  ligthRed: '#EAB7B8',
+  ligthRed: '#ffcdce',
   lightBlue: '#B3DBEC',
   red: '#DE5131',
   grey: '#E3E5E7',

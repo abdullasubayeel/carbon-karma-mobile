@@ -32,6 +32,8 @@ function Login({navigation}: any) {
   const [error, setError] = useState('');
 
   const handleSubmit = async () => {
+    return navigation.navigate('OrgDashboard');
+
     await login({
       email,
       password,

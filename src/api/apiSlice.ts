@@ -45,5 +45,11 @@ export const apiSlice = createApi({
 
   baseQuery: baseQueryWithReAuth,
   endpoints: builder => ({}),
-  tagTypes: ['EmpTips', 'RedeemRequests', 'EmpDashboard', 'OrgDashboard'],
+  tagTypes: [
+    'EmpTips',
+    'RedeemRequests',
+    'EmpDashboard',
+    'OrgDashboard',
+    'OrgSubmittedSurveys',
+  ],
 });
