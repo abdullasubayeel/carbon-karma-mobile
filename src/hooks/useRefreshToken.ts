@@ -1,17 +1,17 @@
-import { setCredentials } from "../api/auth/authSlice";
-import axios from "../api/axios";
-import useAuth from "./useAuth";
-import { useDispatch } from "react-redux";
+import {setCredentialsAction} from '../api/auth/authSlice';
+import axios from '../api/axios';
+import useAuth from './useAuth';
+import {useDispatch} from 'react-redux';
 
 const useRefreshToken = () => {
-  const { setAuth } = useAuth();
+  const {setAuth} = useAuth();
   const dispatch = useDispatch();
   const refresh = async () => {
-    const response = await axios.get("/auth/refresh", {
+    const response = await axios.get('/auth/refresh', {
       withCredentials: true,
     });
 
-    setAuth((prev) => {
+    setAuth(prev => {
       return {
         ...prev,
         roles: response.data.roles,
@@ -21,7 +21,7 @@ const useRefreshToken = () => {
       };
     });
 
-    dispatch(setCredentials({ ...response.data }));
+    dispatch(setCredentialsAction({...response.data}));
     return response.data.accessToken;
   };
   return refresh;

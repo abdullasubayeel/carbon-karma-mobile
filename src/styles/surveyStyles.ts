@@ -2,13 +2,6 @@ import {StyleSheet} from 'react-native';
 import {COLORS} from '../constants/colors';
 
 export const surveyStyles = StyleSheet.create({
-  row: {
-    flexDirection: 'row',
-
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    gap: 12,
-  },
   centeredText: {
     textAlign: 'center',
   },

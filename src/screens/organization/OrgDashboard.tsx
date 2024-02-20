@@ -27,6 +27,7 @@ import OctiIcon from 'react-native-vector-icons/Octicons';
 
 const OrgDashboard = ({navigation}: any) => {
   const {auth} = useContext(AuthContext);
+
   const {data: employees, isLoading: isEmployeesLoading} = useGetEmployeesQuery(
     auth.ID,
   );

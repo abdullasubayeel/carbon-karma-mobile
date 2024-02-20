@@ -1,6 +1,6 @@
 import {Dimensions, Pressable, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
-import {globalStyles} from '../../styles/employeeStyles';
+import {employeeStyles} from '../../styles/employeeStyles';
 import {COLORS} from '../../constants/colors';
 import PieChart from 'react-native-pie-chart';
 import * as Progress from 'react-native-progress';
@@ -31,14 +31,14 @@ const CarbonDashboard = ({navigation}: any) => {
     <View style={styles.bgContainer}>
       {/* Header */}
       <View style={styles.header}>
-        <Text style={globalStyles.heading}>Today</Text>
+        <Text style={employeeStyles.heading}>Today</Text>
         <Pressable onPress={handleSubmitBtn}>
           <Text style={styles.anchorBtn}>Submit Survey</Text>
         </Pressable>
       </View>
       {/* Main Card */}
-      <View style={globalStyles.card}>
-        <Text style={globalStyles.titleText}>Carbon Emission</Text>
+      <View style={employeeStyles.card}>
+        <Text style={employeeStyles.titleText}>Carbon Emission</Text>
         <Text>Remaining = Goal - Vehicle + House</Text>
         <View style={{flexDirection: 'row', alignItems: 'center', gap: 24}}>
           <View style={{position: 'relative'}}>
@@ -71,21 +71,21 @@ const CarbonDashboard = ({navigation}: any) => {
               <Icon name="flag" size={32} color={'#0f951e'} />
               <View>
                 <Text>Base Goal</Text>
-                <Text style={globalStyles.boldText}>1,500</Text>
+                <Text style={employeeStyles.boldText}>1,500</Text>
               </View>
             </View>
             <View style={{flexDirection: 'row', alignItems: 'center', gap: 12}}>
               <Icon name="car" size={30} color={'#e4ae41'} />
               <View>
                 <Text>Vehicle</Text>
-                <Text style={globalStyles.boldText}>-600</Text>
+                <Text style={employeeStyles.boldText}>-600</Text>
               </View>
             </View>
             <View style={{flexDirection: 'row', alignItems: 'center', gap: 12}}>
               <Icon name="home" size={32} color={'#3f72c4'} />
               <View>
                 <Text>House</Text>
-                <Text style={globalStyles.boldText}>259</Text>
+                <Text style={employeeStyles.boldText}>259</Text>
               </View>
             </View>
           </View>
@@ -94,11 +94,11 @@ const CarbonDashboard = ({navigation}: any) => {
 
       {/* Vehicle and House Card */}
       <View style={{flexDirection: 'row', gap: 16, alignItems: 'stretch'}}>
-        <View style={[globalStyles.card, {flex: 1}]}>
-          <Text style={globalStyles.boldText}>Vehicle</Text>
+        <View style={[employeeStyles.card, {flex: 1}]}>
+          <Text style={employeeStyles.boldText}>Vehicle</Text>
           <View style={{flexDirection: 'row', marginVertical: 8}}>
             <Icon name="road" size={24} color={'#2b2b2b'} />
-            <Text style={globalStyles.boldText}> 200 Km</Text>
+            <Text style={employeeStyles.boldText}> 200 Km</Text>
           </View>
           <Text>Goal: -300</Text>
           <Progress.Bar
@@ -107,27 +107,27 @@ const CarbonDashboard = ({navigation}: any) => {
             color={COLORS.primaryColor}
             style={{marginVertical: 12}}></Progress.Bar>
         </View>
-        <View style={[globalStyles.card, {flex: 1}]}>
+        <View style={[employeeStyles.card, {flex: 1}]}>
           <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-            <Text style={globalStyles.boldText}> House</Text>
+            <Text style={employeeStyles.boldText}> House</Text>
             <Icon name="plus" size={24} color={'#2b2b2b'} />
           </View>
 
           <View>
             <View style={{flexDirection: 'row', marginVertical: 8, gap: 16}}>
               <MiIcon name="soup-kitchen" size={24} color={'#0c5700'} />
-              <Text style={globalStyles.boldText}> 200 Km</Text>
+              <Text style={employeeStyles.boldText}> 200 Km</Text>
             </View>
             <View style={{flexDirection: 'row', marginVertical: 8, gap: 16}}>
               <FaIcon name="lightbulb" size={24} color={'#e1b532'} />
-              <Text style={globalStyles.boldText}> 0.03 KWh</Text>
+              <Text style={employeeStyles.boldText}> 0.03 KWh</Text>
             </View>
           </View>
         </View>
       </View>
 
-      <View style={[globalStyles.card]}>
-        <Text style={globalStyles.titleText}>Emission </Text>
+      <View style={[employeeStyles.card]}>
+        <Text style={employeeStyles.titleText}>Emission </Text>
         <Text> Last 90 Days</Text>
 
         <LineChart

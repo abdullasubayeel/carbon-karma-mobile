@@ -16,6 +16,7 @@ import NetInfo from '@react-native-community/netinfo';
 import CustomActivityIndicator from '../components/CustomActivityIndicator';
 import Offline from '../screens/misc/Offline';
 import AuthLoadingScreen from '../screens/misc/AuthLoadingScreen';
+import Notifications from '../screens/organization/Notifications';
 
 const Stack = createStackNavigator();
 const MainStack = () => {
@@ -40,7 +41,7 @@ const MainStack = () => {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{animationEnabled: false}}>
+      <Stack.Navigator>
         {isOnline ? (
           <>
             <Stack.Screen
@@ -65,11 +66,13 @@ const MainStack = () => {
               name="Forgot"
               component={ForgotPassword}
             />
+            <Stack.Screen name="Notifications" component={Notifications} />
             <Stack.Screen
               name="OrgDashboard"
               component={OrgDashboard}
               options={{
-                headerTitle: () => <OrgHeader />,
+                header: () => <OrgHeader />,
+                headerBackTitleVisible: false,
                 headerShadowVisible: false,
                 headerStyle: {
                   backgroundColor: COLORS.lightGreen,

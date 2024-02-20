@@ -23,8 +23,11 @@ import AuthContext from '../../context/AuthProvider';
 const illustration = require('../../assets/images/ck-illustration.png');
 import SplashScreen from 'react-native-splash-screen';
 import {storeAsyncData} from '../../utilities/asyncStorage';
+import {useDispatch} from 'react-redux';
+import {loginAction} from '../../api/auth/authSlice';
 
 function Login({navigation}: any) {
+  const dispatch = useDispatch();
   const {setAuth} = useContext(AuthContext);
   const [login, {isLoading: isLoginLoading}] = useLoginMutation();
   const [email, setEmail] = useState('');
@@ -34,7 +37,7 @@ function Login({navigation}: any) {
 
   const handleSubmit = async () => {
     // return navigation.navigate('OrgDashboard');
-
+    console.log('anything');
     await login({
       email,
       password,
@@ -42,10 +45,18 @@ function Login({navigation}: any) {
     })
       .unwrap()
       .then((res: any) => {
+        console.log('resss', res);
         if (res?.user) {
           setAuth(res.user);
         }
         storeAsyncData('user', JSON.stringify(res.user));
+        dispatch(
+          loginAction({
+            email: res.user.email,
+            accessToken: res.user.token,
+          }),
+        );
+
         if (res?.user?.role === 'employee') {
           navigation.navigate('EmpDashboard');
         } else if (res?.user?.role === 'head') {
@@ -54,7 +65,7 @@ function Login({navigation}: any) {
       })
       .catch((err: any) => {
         console.log('Error:', err);
-        setError(err.data.message || err.data.error);
+        setError(err?.data?.message || err?.data?.error);
       });
   };
 

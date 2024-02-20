@@ -1,7 +1,7 @@
 import {StyleSheet} from 'react-native';
 import {COLORS} from '../constants/colors';
 
-export const globalStyles = StyleSheet.create({
+export const employeeStyles = StyleSheet.create({
   container: {
     backgroundColor: COLORS.backgroundColor,
     flex: 1,

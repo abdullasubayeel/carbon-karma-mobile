@@ -1,4 +1,6 @@
 import {
+  NotificationPayloadType,
+  NotificationType,
   OrgDashboardPayload,
   OrgDashboardResponse,
 } from '../../enums/organization';
@@ -15,9 +17,9 @@ const orgnaisationEndpoint = apiSlice.injectEndpoints({
         `/organisation/employees/${orgId}?page=1&limit=1000&supervisor=false&employee=false`,
       providesTags: ['EmpTips'],
     }),
-    getMyRedeemRequests: builder.query({
-      query: () => `/auth/employee/tips`,
-      providesTags: ['RedeemRequests'],
+    getNotifications: builder.query<NotificationPayloadType, string>({
+      query: orgId => `/notification/list/${orgId}?type=organization`,
+      providesTags: ['Notifications'],
     }),
     createOrganisation: builder.mutation({
       query: data => ({
@@ -42,7 +44,7 @@ const orgnaisationEndpoint = apiSlice.injectEndpoints({
 
 export const {
   useCreateOrganisationMutation,
-  useGetMyRedeemRequestsQuery,
+  useGetNotificationsQuery,
   useGetTipsQuery,
   useGetEmployeesQuery,
   useGetOrgDashboardMutation,

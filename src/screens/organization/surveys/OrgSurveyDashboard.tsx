@@ -9,6 +9,7 @@ import MonthView from './helpers/MonthView';
 import {useGetSubmittedSurveysQuery} from '../../../api/endpoint/orgSurveyEndpoint';
 import AuthContext from '../../../context/AuthProvider';
 import CustomActivityIndicator from '../../../components/CustomActivityIndicator';
+import {globalStyles} from '../../../styles/global';
 const OrgSurveyDashboard = ({navigation}: any) => {
   const {auth} = useContext(AuthContext);
   const [monthIndex, setMonthIndex] = useState(0);
@@ -44,13 +45,13 @@ const OrgSurveyDashboard = ({navigation}: any) => {
       </View>
 
       <View style={surveyStyles.surveyContent}>
-        <View style={[surveyStyles.row]}>
+        <View style={[globalStyles.row]}>
           <Text>
             {moment(submittedSurveys?.orgSurveys[monthIndex].date).format(
               'MMMM YYYY',
             )}
           </Text>
-          <View style={[surveyStyles.row]}>
+          <View style={[globalStyles.row]}>
             <TouchableOpacity
               style={[surveyStyles.circleBtn]}
               onPress={decreaseIndex}>
@@ -129,7 +130,7 @@ const OrgSurveyDashboard = ({navigation}: any) => {
           </View>
         </View>
 
-        <View style={surveyStyles.row}>
+        <View style={globalStyles.row}>
           <Text style={[surveyStyles.largeText]}>Submitted Surveys</Text>
           <Text style={surveyStyles.boldText}>
             {moment(submittedSurveys?.orgSurveys[monthIndex].date).format(

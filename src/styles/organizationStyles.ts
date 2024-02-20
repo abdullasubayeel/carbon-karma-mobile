@@ -4,12 +4,12 @@ import {COLORS} from '../constants/colors';
 export const orgStyles = StyleSheet.create({
   //Headers
   headerContainer: {
-    width: Dimensions.get('window').width * 0.94,
+    // width: Dimensions.get('window').width * 0.94,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingVertical: 4,
-    backgroundColor: COLORS.lightGreen,
+    padding: 12,
+    backgroundColor: COLORS.white,
   },
   profileContainer: {
     gap: 4,
@@ -36,7 +36,7 @@ export const orgStyles = StyleSheet.create({
 
   iconContainer: {
     flexDirection: 'row',
-    gap: 8,
+    gap: 20,
   },
   iconTile: {
     backgroundColor: '#eee',
@@ -130,5 +130,17 @@ export const orgStyles = StyleSheet.create({
     borderRadius: 12,
     padding: 12,
     marginVertical: 12,
+  },
+
+  //Notifications
+  notificationContainer: {
+    backgroundColor: COLORS.grey,
+    marginBottom: 12,
+    marginHorizontal: 12,
+    borderRadius: 12,
+    padding: 12,
+    elevation: 1,
+    borderColor: COLORS.grey,
+    borderWidth: 1,
   },
 });

@@ -44,3 +44,18 @@ export type OrgDashboardResponse = {
   totalOffsetContribution: number;
   totalOrgCarbonEmission: number;
 };
+
+export type NotificationType = {
+  __v: number;
+  _id: string;
+  date: string;
+  is_read: boolean;
+  message: string;
+  title: string;
+  type: string;
+  userID: string;
+};
+
+export type NotificationPayloadType = {
+  response: NotificationType[];
+};
