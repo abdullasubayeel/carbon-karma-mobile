@@ -25,6 +25,7 @@ import CarbonDashboard from './src/screens/employee/CarbonDashboard';
 import SplashScreen from 'react-native-splash-screen';
 import OrgSurveyDashboard from './src/screens/organization/surveys/OrgSurveyDashboard';
 import OrgSurveyDetails from './src/screens/organization/surveys/helpers/OrgSurveyDetails';
+import MainStack from './src/navigation/MainStack';
 
 const Stack = createNativeStackNavigator();
 
@@ -36,52 +37,7 @@ function App(): React.JSX.Element {
     <GestureHandlerRootView style={{flex: 1}}>
       <AuthProvider>
         <Provider store={store}>
-          <NavigationContainer>
-            <Stack.Navigator>
-              <Stack.Screen
-                options={{headerShown: false}}
-                name="Login"
-                component={Login}
-              />
-              <Stack.Screen
-                options={{headerShown: false}}
-                name="Signup"
-                component={OrgSignup}
-              />
-              <Stack.Screen
-                options={{headerShown: false}}
-                name="Forgot"
-                component={ForgotPassword}
-              />
-              <Stack.Screen
-                name="OrgDashboard"
-                component={OrgDashboard}
-                options={{
-                  headerTitle: () => <OrgHeader />,
-                  headerBackVisible: false,
-                  headerShadowVisible: false,
-                  headerStyle: {
-                    backgroundColor: COLORS.lightGreen,
-                  },
-                }}
-              />
-              <Stack.Screen
-                name="Organisation Surveys"
-                component={OrgSurveyDashboard}
-                options={{
-                  headerShown: false,
-                }}
-              />
-              <Stack.Screen
-                name="OrgSurveysDetails"
-                component={OrgSurveyDetails}
-                options={{
-                  headerShown: false,
-                }}
-              />
-              <Stack.Screen name="EmpDashboard" component={CarbonDashboard} />
-            </Stack.Navigator>
-          </NavigationContainer>
+          <MainStack />
         </Provider>
       </AuthProvider>
     </GestureHandlerRootView>

@@ -22,6 +22,7 @@ import PasswordField from '../../components/PasswordField';
 import AuthContext from '../../context/AuthProvider';
 const illustration = require('../../assets/images/ck-illustration.png');
 import SplashScreen from 'react-native-splash-screen';
+import {storeAsyncData} from '../../utilities/asyncStorage';
 
 function Login({navigation}: any) {
   const {setAuth} = useContext(AuthContext);
@@ -44,6 +45,7 @@ function Login({navigation}: any) {
         if (res?.user) {
           setAuth(res.user);
         }
+        storeAsyncData('user', JSON.stringify(res.user));
         if (res?.user?.role === 'employee') {
           navigation.navigate('EmpDashboard');
         } else if (res?.user?.role === 'head') {

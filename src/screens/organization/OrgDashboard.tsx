@@ -213,7 +213,8 @@ const OrgDashboard = ({navigation}: any) => {
         {/* 3 Cards */}
         <View style={orgStyles.wideContainer}>
           <Text style={orgStyles.boldText}>Organizations Surveys</Text>
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => navigation.navigate('Organisation Surveys')}>
             <Text style={orgStyles.small}>View All</Text>
           </TouchableOpacity>
         </View>
@@ -238,7 +239,7 @@ const OrgDashboard = ({navigation}: any) => {
         <Text style={orgStyles.boldText}>Employees</Text>
         <FlatList
           horizontal={true}
-          data={employees.results.employees ?? []}
+          data={employees?.results?.employees ?? []}
           keyExtractor={item => item._id}
           style={{marginVertical: 12, paddingVertical: 8}}
           ItemSeparatorComponent={() => <View style={{width: 8}} />}

@@ -28,8 +28,26 @@ const MonthView = ({dates, year, navigation}: any) => {
     'Nov',
     'Dec',
   ];
-
   const avlMonths = dates.map((date: any) => moment(date).format('MMM'));
+
+  function getElapsedMonthsList() {
+    // Get the current date
+    const currentDate = new Date();
+
+    // Get the current month (0-indexed, so January is 0)
+    const currentMonth = currentDate.getMonth();
+
+    // Generate a list of elapsed months
+    const elapsedMonthsList = [];
+    for (let month = currentMonth - 1; month < 12; month++) {
+      elapsedMonthsList.push(months[month]);
+    }
+
+    return elapsedMonthsList;
+  }
+  const elapsedMonths = getElapsedMonthsList();
+  // const pendingMonths = elapse;
+  console.log(elapsedMonths);
 
   const detailsNavigate = (date: string) => {
     const curDate = dates.find(
