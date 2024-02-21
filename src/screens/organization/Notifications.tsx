@@ -2,7 +2,6 @@ import {SectionList, StyleSheet, Text, View} from 'react-native';
 import React, {useContext} from 'react';
 import {useGetNotificationsQuery} from '../../api/endpoint/organizationEndpoint';
 import AuthContext from '../../context/AuthProvider';
-import NotificationTile from './helpers/NotificationTile';
 import {groupNotificationsByDate} from '../../utilities/groupbyDate';
 import {NotificationType} from '../../enums/organization';
 import {orgStyles} from '../../styles/organizationStyles';
@@ -43,10 +42,7 @@ const Notifications = () => {
           <View style={orgStyles.notificationContainer}>
             <View style={[globalStyles.row]}>
               <Text style={styles.title}>{item.title}</Text>
-              <Text style={orgStyles.small}>
-                {moment(item.date).fromNow()}
-                {/* {!item.is_read && 'Unread'} */}
-              </Text>
+              <Text style={orgStyles.small}>{moment(item.date).fromNow()}</Text>
             </View>
             <Text style={orgStyles.small}>{item.message}</Text>
           </View>

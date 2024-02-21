@@ -17,6 +17,7 @@ import CustomActivityIndicator from '../components/CustomActivityIndicator';
 import Offline from '../screens/misc/Offline';
 import AuthLoadingScreen from '../screens/misc/AuthLoadingScreen';
 import Notifications from '../screens/organization/Notifications';
+import OrgLayout from '../screens/organization';
 
 const Stack = createStackNavigator();
 const MainStack = () => {
@@ -69,7 +70,7 @@ const MainStack = () => {
             <Stack.Screen name="Notifications" component={Notifications} />
             <Stack.Screen
               name="OrgDashboard"
-              component={OrgDashboard}
+              component={OrgLayout}
               options={{
                 header: () => <OrgHeader />,
                 headerBackTitleVisible: false,
@@ -79,13 +80,7 @@ const MainStack = () => {
                 },
               }}
             />
-            <Stack.Screen
-              name="Organisation Surveys"
-              component={OrgSurveyDashboard}
-              options={{
-                headerShown: false,
-              }}
-            />
+            <Stack.Screen name="Surveys" component={OrgSurveyDashboard} />
             <Stack.Screen
               name="OrgSurveysDetails"
               component={OrgSurveyDetails}

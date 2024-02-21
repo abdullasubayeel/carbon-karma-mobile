@@ -134,7 +134,7 @@ const OrgDashboard = ({navigation}: any) => {
   };
 
   const surveyNavigate = () => {
-    navigation.navigate('Organisation Surveys');
+    navigation.navigate('Surveys');
   };
 
   useEffect(() => {

@@ -37,12 +37,12 @@ const OrgSurveyDashboard = ({navigation}: any) => {
 
   return (
     <View style={surveyStyles.surveyContainer}>
-      <View style={surveyStyles.surveyHeader}>
+      {/* <View style={surveyStyles.surveyHeader}>
         <TouchableOpacity onPress={() => navigation.goBack()}>
           <Icon name="arrowleft" size={22} color={COLORS.black} />
         </TouchableOpacity>
         <Text style={surveyStyles.headerText}>Survey Info</Text>
-      </View>
+      </View> */}
 
       <View style={surveyStyles.surveyContent}>
         <View style={[globalStyles.row]}>
