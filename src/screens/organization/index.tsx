@@ -18,6 +18,11 @@ function OrgLayout() {
         name="Dashboard"
         component={OrgDashboard}
         options={{
+          tabBarStyle: {
+            height: 75,
+            paddingBottom: 12,
+            paddingTop: 12,
+          },
           headerShown: false,
           tabBarIcon: ({color, size}) => (
             <Icon name="home" color={color} size={size} />
@@ -31,6 +36,11 @@ function OrgLayout() {
         component={OrgSurveyDashboard}
         options={{
           headerShown: false,
+          tabBarStyle: {
+            height: 75,
+            paddingBottom: 12,
+            paddingTop: 12,
+          },
           tabBarIcon: ({color, size}) => (
             <Icon name="form" color={color} size={size} />
           ),
@@ -43,9 +53,15 @@ function OrgLayout() {
         component={Notifications}
         options={{
           headerShown: false,
+          tabBarStyle: {
+            height: 75,
+            paddingBottom: 12,
+            paddingTop: 12,
+          },
           tabBarIcon: ({color, size}) => (
             <Icon name="bells" color={color} size={size} />
           ),
+          tabBarActiveTintColor: COLORS.primaryColor,
         }}
       />
       <Tab.Screen
@@ -53,10 +69,16 @@ function OrgLayout() {
         component={Profile}
         options={{
           headerShown: false,
+          tabBarStyle: {
+            height: 75,
+            paddingBottom: 12,
+            paddingTop: 12,
+          },
 
           tabBarIcon: ({color, size}) => (
             <OIcon name="person" color={color} size={size} />
           ),
+          tabBarActiveTintColor: COLORS.primaryColor,
         }}
       />
     </Tab.Navigator>

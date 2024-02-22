@@ -18,6 +18,7 @@ import Offline from '../screens/misc/Offline';
 import AuthLoadingScreen from '../screens/misc/AuthLoadingScreen';
 import Notifications from '../screens/organization/Notifications';
 import OrgLayout from '../screens/organization';
+import UpdateProfile from '../screens/organization/profile/UpdateProfile';
 
 const Stack = createStackNavigator();
 const MainStack = () => {
@@ -88,6 +89,7 @@ const MainStack = () => {
                 headerShown: false,
               }}
             />
+            <Stack.Screen name="Update Profile" component={UpdateProfile} />
             <Stack.Screen name="EmpDashboard" component={CarbonDashboard} />
           </>
         ) : (

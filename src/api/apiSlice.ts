@@ -56,5 +56,7 @@ export const apiSlice = createApi({
     'EmpDashboard',
     'OrgDashboard',
     'OrgSubmittedSurveys',
+    'EmpProfile',
+    'OrgProfile',
   ],
 });

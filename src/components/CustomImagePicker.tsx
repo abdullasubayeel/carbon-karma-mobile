@@ -34,7 +34,7 @@ export default CustomImagePicker;
 
 const styles = StyleSheet.create({
   fieldContainer: {
-    padding: 4,
+    // padding: 4,
   },
   label: {
     fontSize: 14,

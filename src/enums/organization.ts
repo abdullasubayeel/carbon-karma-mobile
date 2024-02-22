@@ -59,3 +59,37 @@ export type NotificationType = {
 export type NotificationPayloadType = {
   response: NotificationType[];
 };
+
+export type OrganizationProfileType = {
+  _id: string;
+  location: string;
+  organisationName: string;
+  employeeCount: number;
+  sector: string;
+  address: string;
+  logo: string;
+  departments: any[];
+  questionid: any[];
+  carbon_neutralized: number;
+  karma_points: number;
+  carbon_emission: number;
+  __v: number;
+};
+
+export type EmpProfileType = {
+  _id: string;
+  fullname: string;
+  Phone: string;
+  location: string;
+  about: string;
+  is_delete: boolean;
+  role: string;
+  email: string;
+  organisationID: string;
+  karma_points: number;
+  carbon_emission: number;
+  __v: number;
+  resetToken: string;
+  resetTokenExpiration: string;
+  profile: string;
+};

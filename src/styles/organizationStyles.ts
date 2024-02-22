@@ -48,7 +48,7 @@ export const orgStyles = StyleSheet.create({
 
   dashboardBodyContainer: {
     backgroundColor: COLORS.lightGreen,
-    padding: 12,
+    paddingHorizontal: 12,
   },
 
   wideContainer: {
@@ -142,5 +142,57 @@ export const orgStyles = StyleSheet.create({
     elevation: 1,
     borderColor: COLORS.grey,
     borderWidth: 1,
+  },
+
+  //Profile
+  profileBody: {
+    backgroundColor: COLORS.backgroundColor,
+    padding: 12,
+  },
+
+  avatar: {
+    height: 100,
+    marginVertical: 12,
+  },
+
+  profileText: {
+    gap: 4,
+  },
+  cardWrapper: {
+    backgroundColor: COLORS.white,
+    position: 'relative',
+    alignItems: 'flex-start',
+  },
+
+  orgImage: {
+    position: 'absolute',
+    right: 12,
+    bottom: 12,
+    height: 100,
+    width: 100,
+  },
+
+  title: {
+    fontSize: 24,
+    fontWeight: '600',
+    color: COLORS.primaryColor,
+  },
+  imageIcon: {
+    height: 36,
+    width: 36,
+    margin: 'auto',
+    resizeMode: 'contain',
+  },
+
+  //Update Profile
+  updateImageContainer: {
+    flexDirection: 'row',
+    gap: 12,
+  },
+  updateImageAvatar: {
+    height: 120,
+    width: 120,
+    borderRadius: 12,
+    resizeMode: 'contain',
   },
 });
