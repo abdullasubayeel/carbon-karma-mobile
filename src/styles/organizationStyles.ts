@@ -4,12 +4,11 @@ import {COLORS} from '../constants/colors';
 export const orgStyles = StyleSheet.create({
   //Headers
   headerContainer: {
-    // width: Dimensions.get('window').width * 0.94,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     padding: 12,
-    backgroundColor: COLORS.white,
+    backgroundColor: COLORS.lightGreen,
   },
   profileContainer: {
     gap: 4,
@@ -146,7 +145,6 @@ export const orgStyles = StyleSheet.create({
 
   //Profile
   profileBody: {
-    backgroundColor: COLORS.backgroundColor,
     padding: 12,
   },
 

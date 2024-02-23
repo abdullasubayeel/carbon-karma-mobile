@@ -21,9 +21,9 @@ export const globalStyles = StyleSheet.create({
 
   card: {
     borderRadius: 12,
-    borderWidth: 1,
+    // borderWidth: 1,
     borderColor: COLORS.borderColor,
-    padding: 12,
+    padding: 20,
     elevation: 1,
     backgroundColor: COLORS.white,
     marginVertical: 8,

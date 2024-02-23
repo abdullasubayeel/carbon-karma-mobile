@@ -6,9 +6,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import Login from '../screens/auth/Login';
 import OrgSignup from '../screens/auth/OrgSignup';
 import ForgotPassword from '../screens/auth/ForgotPassword';
-import OrgDashboard from '../screens/organization/OrgDashboard';
-import OrgHeader from '../screens/organization/helpers/OrgHeader';
-import {COLORS} from '../constants/colors';
+
 import OrgSurveyDashboard from '../screens/organization/surveys/OrgSurveyDashboard';
 import OrgSurveyDetails from '../screens/organization/surveys/helpers/OrgSurveyDetails';
 import CarbonDashboard from '../screens/employee/CarbonDashboard';
@@ -20,6 +18,7 @@ import Notifications from '../screens/organization/Notifications';
 import OrgLayout from '../screens/organization';
 import UpdateProfile from '../screens/organization/profile/UpdateProfile';
 import OrgSurveyForm from '../screens/organization/surveys/form/OrgSurveyForm';
+import Explore from '../screens/organization/Explore';
 
 const Stack = createStackNavigator();
 const MainStack = () => {
@@ -74,12 +73,9 @@ const MainStack = () => {
               name="OrgDashboard"
               component={OrgLayout}
               options={{
-                header: () => <OrgHeader />,
+                headerShown: false,
                 headerBackTitleVisible: false,
                 headerShadowVisible: false,
-                headerStyle: {
-                  backgroundColor: COLORS.lightGreen,
-                },
               }}
             />
             <Stack.Screen name="Surveys" component={OrgSurveyDashboard} />
@@ -99,6 +95,13 @@ const MainStack = () => {
             />
             <Stack.Screen name="Update Profile" component={UpdateProfile} />
             <Stack.Screen name="EmpDashboard" component={CarbonDashboard} />
+            <Stack.Screen
+              name="OrgExplore"
+              component={Explore}
+              options={{
+                headerShown: false,
+              }}
+            />
           </>
         ) : (
           <Stack.Screen

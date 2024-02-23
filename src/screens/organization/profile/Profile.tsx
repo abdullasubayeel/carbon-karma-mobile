@@ -39,7 +39,7 @@ const Profile = ({navigation}: any) => {
     <View style={orgStyles.profileBody}>
       <View style={globalStyles.card}>
         <View style={globalStyles.row}>
-          <Text style={orgStyles.nameText}>Profile</Text>
+          <Text style={orgStyles.nameText}>Your Profile</Text>
           <TouchableOpacity onPress={updateNavigate}>
             <Icon name="edit" color={COLORS.primaryColor} size={24} />
           </TouchableOpacity>
