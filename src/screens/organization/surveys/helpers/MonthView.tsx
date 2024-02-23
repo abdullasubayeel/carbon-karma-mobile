@@ -5,6 +5,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   ToastAndroid,
+  Alert,
 } from 'react-native';
 import {COLORS} from '../../../../constants/colors';
 import moment from 'moment';
@@ -13,7 +14,7 @@ type MonthViewProps = {
   year: string;
   dates: string[];
 };
-const MonthView = ({dates, year, navigation}: any) => {
+const MonthView = ({submittedSurveys, year, navigation}: any) => {
   const months = [
     'Jan',
     'Feb',
@@ -28,7 +29,10 @@ const MonthView = ({dates, year, navigation}: any) => {
     'Nov',
     'Dec',
   ];
-  const avlMonths = dates.map((date: any) => moment(date).format('MMM'));
+
+  const avlMonths = submittedSurveys?.map((obj: any) =>
+    moment(obj.date).format('MMM'),
+  );
 
   function getElapsedMonthsList() {
     // Get the current date
@@ -46,22 +50,62 @@ const MonthView = ({dates, year, navigation}: any) => {
     return elapsedMonthsList;
   }
   const elapsedMonths = getElapsedMonthsList();
-  // const pendingMonths = elapse;
-  console.log(elapsedMonths);
 
-  const detailsNavigate = (date: string) => {
-    const curDate = dates.find(
-      (obj: any) => moment(obj).format('MMM YYYY') === `${date} ${year}`,
+  const detailsNavigate = (monthName: string) => {
+    const curSurvey = submittedSurveys.find(
+      (obj: any) =>
+        moment(obj.date).format('MMM YYYY') === `${monthName} ${year}`,
     );
 
-    if (!curDate) {
-      return ToastAndroid.show(
-        'No Survey Data on given date',
-        ToastAndroid.SHORT,
-      );
+    if (!curSurvey) {
+      return surveyFormNavigate(monthName, 0);
     }
-    navigation.navigate('OrgSurveysDetails', {date: curDate});
+
+    if (!Object.keys(curSurvey.surveyDetails).includes('transport')) {
+      showAlert(monthName, 'Transport survey data is missing', 0);
+      return;
+    } else if (!Object.keys(curSurvey.surveyDetails).includes('machinary')) {
+      showAlert(monthName, 'Machinary survey data is missing', 1);
+      return;
+    } else if (!Object.keys(curSurvey.surveyDetails).includes('electricity')) {
+      showAlert(monthName, 'Electricity survey data is missing', 2);
+      return;
+    } else if (!Object.keys(curSurvey.surveyDetails).includes('utility')) {
+      showAlert(monthName, 'Utility survey data is missing', 3);
+      return;
+    }
+
+    navigation.navigate('OrgSurveysDetails', {date: curSurvey.date});
   };
+
+  const surveyFormNavigate = (monthName: any, stepper: any) => {
+    navigation.navigate('OrgSurveyForm', {
+      monthName: monthName,
+      year,
+      stepper: stepper,
+    });
+  };
+
+  const showAlert = (monthName: any, message: any, stepper: number) =>
+    Alert.alert(
+      message,
+      'Would you like to add Survey for this given data?',
+      [
+        {
+          text: 'Cancel',
+          onPress: () => {},
+          style: 'cancel',
+        },
+        {
+          text: 'Yes',
+          onPress: () => surveyFormNavigate(monthName, stepper),
+          style: 'default',
+        },
+      ],
+      {
+        cancelable: true,
+      },
+    );
   return (
     <View style={styles.container}>
       {months.map((month, index) => (

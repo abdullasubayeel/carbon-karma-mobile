@@ -58,5 +58,6 @@ export const apiSlice = createApi({
     'OrgSubmittedSurveys',
     'EmpProfile',
     'OrgProfile',
+    'OrgVehicles',
   ],
 });

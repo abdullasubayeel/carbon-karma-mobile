@@ -1,14 +1,14 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 
-const Survey = () => {
+const Electricity = ({monthName, year}: any) => {
   return (
     <View>
-      <Text>Survey</Text>
+      <Text>Electricity</Text>
     </View>
   );
 };
 
-export default Survey;
+export default Electricity;
 
 const styles = StyleSheet.create({});

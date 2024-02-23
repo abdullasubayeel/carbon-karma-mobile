@@ -28,7 +28,7 @@ const OrgSurveyDashboard = ({navigation}: any) => {
     }
     setMonthIndex(curIndex => curIndex - 1);
   };
-
+  console.log('org survey', submittedSurveys?.orgSurveys);
   if (isSurveyLoading) {
     return (
       <CustomActivityIndicator size="large" message="Fetching all surveys..." />
@@ -45,103 +45,108 @@ const OrgSurveyDashboard = ({navigation}: any) => {
       </View> */}
 
       <View style={surveyStyles.surveyContent}>
-        <View style={[globalStyles.row]}>
-          <Text>
-            {moment(submittedSurveys?.orgSurveys[monthIndex].date).format(
-              'MMMM YYYY',
-            )}
-          </Text>
-          <View style={[globalStyles.row]}>
-            <TouchableOpacity
-              style={[surveyStyles.circleBtn]}
-              onPress={decreaseIndex}>
-              <MIcon
-                name="arrow-back-ios"
-                size={14}
-                color={COLORS.primaryColor}
-              />
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={[surveyStyles.circleBtn]}
-              onPress={increaseIndex}>
-              <MIcon
-                name="arrow-forward-ios"
-                size={14}
-                color={COLORS.primaryColor}
-              />
-            </TouchableOpacity>
-          </View>
-        </View>
+        {submittedSurveys?.orgSurveys.length !== 0 && (
+          <>
+            <View style={[globalStyles.row]}>
+              <Text>
+                {moment(submittedSurveys?.orgSurveys[monthIndex]?.date).format(
+                  'MMMM YYYY',
+                )}
+              </Text>
+              <View style={[globalStyles.row]}>
+                <TouchableOpacity
+                  style={[surveyStyles.circleBtn]}
+                  onPress={decreaseIndex}>
+                  <MIcon
+                    name="arrow-back-ios"
+                    size={14}
+                    color={COLORS.primaryColor}
+                  />
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={[surveyStyles.circleBtn]}
+                  onPress={increaseIndex}>
+                  <MIcon
+                    name="arrow-forward-ios"
+                    size={14}
+                    color={COLORS.primaryColor}
+                  />
+                </TouchableOpacity>
+              </View>
+            </View>
 
-        <View style={surveyStyles.surveyDetailsCard}>
-          <View style={surveyStyles.emissionTile}>
-            <Text style={[surveyStyles.lightText, surveyStyles.centeredText]}>
-              Transport
-            </Text>
-            <Text style={surveyStyles.centeredText}>
-              {
-                submittedSurveys?.orgSurveys[monthIndex].surveyDetails.transport
-                  .carbonEmission
-              }
-              kg
-            </Text>
-          </View>
-          <View style={surveyStyles.emissionTile}>
-            <Text style={[surveyStyles.lightText, surveyStyles.centeredText]}>
-              Machinary
-            </Text>
-            <Text style={surveyStyles.centeredText}>
-              {
-                submittedSurveys?.orgSurveys[monthIndex].surveyDetails.machinery
-                  .carbonEmission
-              }
-              kg
-            </Text>
-          </View>
-          <View style={surveyStyles.emissionTile}>
-            <Text style={[surveyStyles.lightText, surveyStyles.centeredText]}>
-              Electricity
-            </Text>
-            <Text style={surveyStyles.centeredText}>
-              {
-                submittedSurveys?.orgSurveys[monthIndex].surveyDetails
-                  .electricity.carbonEmission
-              }
-              kg
-            </Text>
-            <Text style={[surveyStyles.smallText, surveyStyles.centeredText]}>
-              {
-                submittedSurveys?.orgSurveys[monthIndex].surveyDetails
-                  .electricity.unitsConsumed
-              }{' '}
-              KWh
-            </Text>
-          </View>
-          <View style={surveyStyles.emissionTile}>
-            <Text style={[surveyStyles.lightText, surveyStyles.centeredText]}>
-              Utilities
-            </Text>
-            <Text style={surveyStyles.centeredText}>
-              {submittedSurveys?.orgSurveys[
-                monthIndex
-              ].surveyDetails.utility.carbonEmission.toFixed(2)}
-              kg
-            </Text>
-          </View>
-        </View>
-
+            <View style={surveyStyles.surveyDetailsCard}>
+              <View style={surveyStyles.emissionTile}>
+                <Text
+                  style={[surveyStyles.lightText, surveyStyles.centeredText]}>
+                  Transport
+                </Text>
+                <Text style={surveyStyles.centeredText}>
+                  {
+                    submittedSurveys?.orgSurveys[monthIndex]?.surveyDetails
+                      .transport.carbonEmission
+                  }
+                  kg
+                </Text>
+              </View>
+              <View style={surveyStyles.emissionTile}>
+                <Text
+                  style={[surveyStyles.lightText, surveyStyles.centeredText]}>
+                  Machinary
+                </Text>
+                <Text style={surveyStyles.centeredText}>
+                  {submittedSurveys?.orgSurveys[monthIndex]?.surveyDetails
+                    ?.machinery?.carbonEmission ?? '0'}
+                  kg
+                </Text>
+              </View>
+              <View style={surveyStyles.emissionTile}>
+                <Text
+                  style={[surveyStyles.lightText, surveyStyles.centeredText]}>
+                  Electricity
+                </Text>
+                <Text style={surveyStyles.centeredText}>
+                  {submittedSurveys?.orgSurveys[monthIndex]?.surveyDetails
+                    .electricity?.carbonEmission ?? '0'}
+                  kg
+                </Text>
+                <Text
+                  style={[surveyStyles.smallText, surveyStyles.centeredText]}>
+                  {submittedSurveys?.orgSurveys[monthIndex]?.surveyDetails
+                    .electricity?.unitsConsumed ?? '0'}{' '}
+                  KWh
+                </Text>
+              </View>
+              <View style={surveyStyles.emissionTile}>
+                <Text
+                  style={[surveyStyles.lightText, surveyStyles.centeredText]}>
+                  Utilities
+                </Text>
+                <Text style={surveyStyles.centeredText}>
+                  {submittedSurveys?.orgSurveys[
+                    monthIndex
+                  ]?.surveyDetails.utility?.carbonEmission.toFixed(2) ?? '0'}
+                  kg
+                </Text>
+              </View>
+            </View>
+          </>
+        )}
         <View style={globalStyles.row}>
           <Text style={[surveyStyles.largeText]}>Submitted Surveys</Text>
           <Text style={surveyStyles.boldText}>
-            {moment(submittedSurveys?.orgSurveys[monthIndex].date).format(
+            {moment(submittedSurveys?.orgSurveys[monthIndex]?.date).format(
               'YYYY',
             )}
           </Text>
         </View>
+        <Text>Choose the month to submit/view the surveys</Text>
         <MonthView
           navigation={navigation}
           year="2024"
-          dates={submittedSurveys?.orgSurveys.map((curObj: any) => curObj.date)}
+          submittedSurveys={submittedSurveys?.orgSurveys.map(
+            (curObj: any) => curObj,
+          )}
         />
       </View>
     </View>

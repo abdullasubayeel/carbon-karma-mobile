@@ -19,6 +19,7 @@ import AuthLoadingScreen from '../screens/misc/AuthLoadingScreen';
 import Notifications from '../screens/organization/Notifications';
 import OrgLayout from '../screens/organization';
 import UpdateProfile from '../screens/organization/profile/UpdateProfile';
+import OrgSurveyForm from '../screens/organization/surveys/form/OrgSurveyForm';
 
 const Stack = createStackNavigator();
 const MainStack = () => {
@@ -85,6 +86,13 @@ const MainStack = () => {
             <Stack.Screen
               name="OrgSurveysDetails"
               component={OrgSurveyDetails}
+              options={{
+                headerShown: false,
+              }}
+            />
+            <Stack.Screen
+              name="OrgSurveyForm"
+              component={OrgSurveyForm}
               options={{
                 headerShown: false,
               }}

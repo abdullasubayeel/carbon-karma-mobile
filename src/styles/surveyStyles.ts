@@ -51,7 +51,7 @@ export const surveyStyles = StyleSheet.create({
     color: COLORS.black,
   },
   emissionTile: {
-    padding: 22,
+    padding: 18,
   },
 
   surveyImage: {
@@ -61,5 +61,11 @@ export const surveyStyles = StyleSheet.create({
     resizeMode: 'contain',
     height: 120,
     width: 120,
+  },
+
+  //surveyForm
+
+  surveyFormContainer: {
+    paddingHorizontal: 20,
   },
 });

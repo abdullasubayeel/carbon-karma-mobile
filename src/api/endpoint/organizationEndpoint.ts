@@ -5,6 +5,7 @@ import {
   OrgDashboardPayload,
   OrgDashboardResponse,
   OrganizationProfileType,
+  OrganizationVehiclesPayloadType,
 } from '../../enums/organization';
 import {apiSlice} from '../apiSlice';
 
@@ -50,6 +51,10 @@ const orgnaisationEndpoint = apiSlice.injectEndpoints({
       query: orgId => `/organisation/${orgId}`,
       providesTags: ['OrgProfile'],
     }),
+    getOrgVehicles: builder.query<OrganizationVehiclesPayloadType, string>({
+      query: orgId => `/organisation/orgVehicle/org/${orgId}`,
+      providesTags: ['OrgVehicles'],
+    }),
     updateProfile: builder.mutation({
       query: data => ({
         url: `/profile/${data.empId}`,
@@ -70,4 +75,5 @@ export const {
   useGetOrgProfileQuery,
   useGetOrgDashboardMutation,
   useUpdateProfileMutation,
+  useGetOrgVehiclesQuery,
 } = orgnaisationEndpoint;

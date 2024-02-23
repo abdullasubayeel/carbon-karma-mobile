@@ -75,7 +75,28 @@ export type OrganizationProfileType = {
   carbon_emission: number;
   __v: number;
 };
-
+export type OrganizationVehiclesPayloadType = {
+  response: OrganizationVehiclesType[];
+  valid: boolean;
+};
+export type OrganizationVehiclesType = {
+  _id: string;
+  manufactureYear: number;
+  company: string;
+  vehicleName: string;
+  fuelEfficiency: number;
+  fuelType: string;
+  countryOfOrigin: string;
+  model: string;
+  derivative: string;
+  engineSize: number;
+  transmissionType: string;
+  weight: number;
+  organizationId: string;
+  createdAt: string;
+  updatedAt: string;
+  __v: number;
+};
 export type EmpProfileType = {
   _id: string;
   fullname: string;

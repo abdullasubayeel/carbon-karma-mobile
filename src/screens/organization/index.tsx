@@ -2,7 +2,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import OrgDashboard from './OrgDashboard';
 import {COLORS} from '../../constants/colors';
 import OrgHeader from './helpers/OrgHeader';
-import Survey from './surveys/Survey';
+import Survey from './surveys/form/OrgSurveyForm';
 import OrgSurveyDashboard from './surveys/OrgSurveyDashboard';
 import Notifications from './Notifications';
 import Icon from 'react-native-vector-icons/AntDesign';

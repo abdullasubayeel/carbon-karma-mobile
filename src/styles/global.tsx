@@ -8,6 +8,16 @@ export const globalStyles = StyleSheet.create({
     alignItems: 'center',
     gap: 12,
   },
+  heading: {
+    fontWeight: '600',
+    color: COLORS.black,
+    fontSize: 18,
+  },
+  title: {
+    fontWeight: '600',
+    color: COLORS.primaryColor,
+    fontSize: 16,
+  },
 
   card: {
     borderRadius: 12,
