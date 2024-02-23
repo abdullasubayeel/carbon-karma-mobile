@@ -62,7 +62,7 @@ export const orgStyles = StyleSheet.create({
     fontWeight: '400',
   },
   largeText: {
-    fontSize: 40,
+    fontSize: 32,
     fontWeight: '500',
     color: COLORS.black,
   },

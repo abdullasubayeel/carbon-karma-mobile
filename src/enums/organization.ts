@@ -97,6 +97,25 @@ export type OrganizationVehiclesType = {
   updatedAt: string;
   __v: number;
 };
+
+export type OrganizationMachinesPayloadType = {
+  response: OrganizationMachinesType[];
+  valid: boolean;
+};
+export type OrganizationMachinesType = {
+  _id: string;
+  machineType: string;
+  modelName: string;
+  description: string;
+  brandName: string;
+  serialNumber: string;
+  fuelType: string;
+  fuelConsumptionRate: number;
+  fuelEfficiency: number;
+  organizationId: number;
+  __v: 0;
+};
+
 export type EmpProfileType = {
   _id: string;
   fullname: string;

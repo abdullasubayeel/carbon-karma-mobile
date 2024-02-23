@@ -4,6 +4,7 @@ import {
   NotificationType,
   OrgDashboardPayload,
   OrgDashboardResponse,
+  OrganizationMachinesPayloadType,
   OrganizationProfileType,
   OrganizationVehiclesPayloadType,
 } from '../../enums/organization';
@@ -40,7 +41,6 @@ const orgnaisationEndpoint = apiSlice.injectEndpoints({
         method: 'POST',
         body: data,
       }),
-      invalidatesTags: ['OrgDashboard'],
     }),
 
     getEmployeeProfile: builder.query<EmpProfileType, string>({
@@ -54,6 +54,18 @@ const orgnaisationEndpoint = apiSlice.injectEndpoints({
     getOrgVehicles: builder.query<OrganizationVehiclesPayloadType, string>({
       query: orgId => `/organisation/orgVehicle/org/${orgId}`,
       providesTags: ['OrgVehicles'],
+    }),
+    getOrgMachines: builder.query<OrganizationMachinesPayloadType, string>({
+      query: orgId => `/organisation/orgMachine/org/${orgId}`,
+      providesTags: ['OrgMachines'],
+    }),
+    getCountries: builder.query({
+      query: () => `/country`,
+      providesTags: ['Countries'],
+    }),
+    getStates: builder.query({
+      query: id => `/state/${id}`,
+      providesTags: ['States'],
     }),
     updateProfile: builder.mutation({
       query: data => ({
@@ -76,4 +88,7 @@ export const {
   useGetOrgDashboardMutation,
   useUpdateProfileMutation,
   useGetOrgVehiclesQuery,
+  useGetOrgMachinesQuery,
+  useGetCountriesQuery,
+  useLazyGetStatesQuery,
 } = orgnaisationEndpoint;

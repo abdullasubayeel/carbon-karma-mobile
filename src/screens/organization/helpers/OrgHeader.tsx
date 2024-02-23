@@ -9,7 +9,7 @@ import {StackNavigationProp} from '@react-navigation/stack';
 import {useDispatch} from 'react-redux';
 import {removeAsyncData} from '../../../utilities/asyncStorage';
 import {logoutAction} from '../../../api/auth/authSlice';
-export type RootStackParamList = {
+type RootStackParamList = {
   Notifications: {id: number} | undefined;
   Login: {} | undefined;
 };

@@ -2,7 +2,6 @@ import {StyleSheet, Text, ToastAndroid, View} from 'react-native';
 import React, {useContext, useState} from 'react';
 import {surveyStyles} from '../../../../styles/surveyStyles';
 import CustomTextField from '../../../../components/CustomTextField';
-import CustomSelect from '../../../../components/CustomSelect';
 import {globalStyles} from '../../../../styles/global';
 import {useGetOrgVehiclesQuery} from '../../../../api/endpoint/organizationEndpoint';
 import AuthContext from '../../../../context/AuthProvider';

@@ -64,7 +64,7 @@ const MonthView = ({submittedSurveys, year, navigation}: any) => {
     if (!Object.keys(curSurvey.surveyDetails).includes('transport')) {
       showAlert(monthName, 'Transport survey data is missing', 0);
       return;
-    } else if (!Object.keys(curSurvey.surveyDetails).includes('machinary')) {
+    } else if (!Object.keys(curSurvey.surveyDetails).includes('machinery')) {
       showAlert(monthName, 'Machinary survey data is missing', 1);
       return;
     } else if (!Object.keys(curSurvey.surveyDetails).includes('electricity')) {

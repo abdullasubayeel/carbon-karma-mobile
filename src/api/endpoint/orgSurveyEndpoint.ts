@@ -22,6 +22,27 @@ const orgnaisationEndpoint = apiSlice.injectEndpoints({
         body: data,
       }),
     }),
+    submitOrgMachineSurvey: builder.mutation({
+      query: data => ({
+        url: `/organisation/monthlySurvey/machinery`,
+        method: 'POST',
+        body: data,
+      }),
+    }),
+    submitOrgElectricitySurvey: builder.mutation({
+      query: data => ({
+        url: `/organisation/monthlySurvey/electricity`,
+        method: 'POST',
+        body: data,
+      }),
+    }),
+    submitOrgUtilitySurvey: builder.mutation({
+      query: data => ({
+        url: `/organisation/monthlySurvey/officeUtility`,
+        method: 'POST',
+        body: data,
+      }),
+    }),
 
     createOrganisation: builder.mutation({
       query: data => ({
@@ -37,4 +58,7 @@ export const {
   useGetSubmittedSurveysQuery,
   useGetSurveysDetailsByDateQuery,
   useSubmitOrgTransportSurveyMutation,
+  useSubmitOrgMachineSurveyMutation,
+  useSubmitOrgElectricitySurveyMutation,
+  useSubmitOrgUtilitySurveyMutation,
 } = orgnaisationEndpoint;
