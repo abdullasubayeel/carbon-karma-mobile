@@ -193,4 +193,10 @@ export const orgStyles = StyleSheet.create({
     borderRadius: 12,
     resizeMode: 'contain',
   },
+
+  //Explore
+  exploreContainer: {
+    gap: 12,
+    padding: 12,
+  },
 });
