@@ -32,7 +32,7 @@ const UpdateProfile = ({route}: any) => {
   const [phone, setPhone] = useState(profileData.Phone);
   const [email, setEmail] = useState(profileData.email);
   const [about, setAbout] = useState(profileData.about);
-  const [selectedImage, setSelectedImage] = useState<any>(profileData.logo);
+  const [selectedImage, setSelectedImage] = useState<any>(profileData.profile);
 
   const formattedOptions = countriesData.map(option => ({
     label: option.name,
@@ -71,11 +71,12 @@ const UpdateProfile = ({route}: any) => {
       console.log('Error:', error);
     }
   };
+
   return (
     <View style={orgStyles.profileBody}>
       <View style={orgStyles.updateImageContainer}>
         <Image
-          source={selectedImage ? {uri: selectedImage.uri} : dummy}
+          source={selectedImage ? {uri: selectedImage} : dummy}
           style={orgStyles.updateImageAvatar}></Image>
         <View style={{justifyContent: 'center'}}>
           <Text style={orgStyles.nameText}>Update your profile picture</Text>

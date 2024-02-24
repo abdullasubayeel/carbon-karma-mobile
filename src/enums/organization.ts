@@ -133,3 +133,85 @@ export type EmpProfileType = {
   resetTokenExpiration: string;
   profile: string;
 };
+
+//Offsets
+
+type Contribution = any[]; // Assuming Contribution is an array of any type, you can replace 'any' with the actual type if known
+
+export type OffsetType = {
+  __v: number;
+  _id: string;
+  amount: number;
+  carbon_offset: string;
+  contributions: Contribution;
+  description: string;
+  image: string;
+  is_active: boolean;
+  is_delete: boolean;
+  location: string;
+  organisationId: string;
+  project_details: string;
+  project_highlights: string;
+  project_name: string;
+};
+
+export type OffsetPayload = {
+  result: OffsetType[];
+};
+
+export type VoucherType = {
+  _id: string;
+  voucherName: string;
+  voucherDescription: string;
+  karmaPoints: number;
+  quantity: number;
+  voucherImg: string;
+  dateCreated: string;
+  is_delete: boolean;
+  organisationID: string;
+  __v: number;
+};
+
+//EMployees
+export type EmployeeType = {
+  _id: string;
+  fullname: string;
+  Phone: string;
+  location: string;
+  about?: string;
+  designation?: string;
+  date?: string;
+  is_delete: boolean;
+  role: string;
+  email: string;
+  organisationID: string;
+  karma_points: number;
+  carbon_emission: number;
+  __v: number;
+  password?: string;
+  resetToken?: string;
+  resetTokenExpiration?: string;
+  profile?: string;
+};
+
+export type EmployeePayloadType = {
+  orgId: string;
+  employee: boolean;
+  supervisor: boolean;
+};
+
+type Pagination = {
+  page: number;
+  limit: number;
+  totalResults: number;
+  totalPages: number;
+};
+
+export type EmployeesResponse = {
+  results: {
+    employees: EmployeeType[];
+    pagination: Pagination;
+  };
+};
+
+export type VoucherApiResponse = VoucherType[];

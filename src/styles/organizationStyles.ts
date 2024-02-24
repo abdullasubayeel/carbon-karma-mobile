@@ -199,4 +199,40 @@ export const orgStyles = StyleSheet.create({
     gap: 12,
     padding: 12,
   },
+
+  ///Ofsets
+  offsetImage: {
+    borderRadius: 12,
+    height: 80,
+    width: 80,
+  },
+
+  removeBtn: {
+    backgroundColor: COLORS.ligthRed,
+    borderRadius: 8,
+    padding: 4,
+    elevation: 2,
+    flexDirection: 'row',
+    gap: 4,
+    alignItems: 'center',
+  },
+  removeText: {
+    color: COLORS.red,
+    fontSize: 12,
+    fontWeight: '400',
+  },
+  promoteBtn: {
+    backgroundColor: COLORS.lightGreen,
+    borderRadius: 8,
+    padding: 4,
+    elevation: 2,
+    flexDirection: 'row',
+    gap: 4,
+    alignItems: 'center',
+  },
+  promoteText: {
+    color: COLORS.primaryColor,
+    fontSize: 12,
+    fontWeight: '400',
+  },
 });

@@ -29,7 +29,7 @@ const OrgDashboard = ({navigation}: any) => {
   const {auth} = useContext(AuthContext);
 
   const {data: employees, isLoading: isEmployeesLoading} = useGetEmployeesQuery(
-    auth.ID,
+    {orgId: auth.ID, employee: false, supervisor: false},
   );
 
   const [getOrgDashboard, {isLoading: isOrgDashboardLoading}] =

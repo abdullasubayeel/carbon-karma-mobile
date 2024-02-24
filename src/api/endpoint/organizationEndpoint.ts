@@ -1,12 +1,16 @@
 import {
   EmpProfileType,
+  EmployeePayloadType,
+  EmployeesResponse,
   NotificationPayloadType,
   NotificationType,
+  OffsetPayload,
   OrgDashboardPayload,
   OrgDashboardResponse,
   OrganizationMachinesPayloadType,
   OrganizationProfileType,
   OrganizationVehiclesPayloadType,
+  VoucherApiResponse,
 } from '../../enums/organization';
 import {apiSlice} from '../apiSlice';
 
@@ -16,10 +20,10 @@ const orgnaisationEndpoint = apiSlice.injectEndpoints({
       query: () => `/auth/employee/tips`,
       providesTags: ['EmpTips'],
     }),
-    getEmployees: builder.query({
-      query: orgId =>
-        `/organisation/employees/${orgId}?page=1&limit=1000&supervisor=false&employee=false`,
-      providesTags: ['EmpTips'],
+    getEmployees: builder.query<EmployeesResponse, EmployeePayloadType>({
+      query: (data: any) =>
+        `/organisation/employees/${data.orgId}?page=1&limit=1000&supervisor=${data.supervisor}&employee=${data.employee}`,
+      providesTags: ['Employees'],
     }),
     getNotifications: builder.query<NotificationPayloadType, string>({
       query: orgId => `/notification/list/${orgId}?type=organization`,
@@ -75,6 +79,42 @@ const orgnaisationEndpoint = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ['EmpProfile'],
     }),
+
+    //offsets endpoints
+    getOrgOffsets: builder.query<OffsetPayload, string>({
+      query: orgId => `/super/getOffsetByOrgId/${orgId}`,
+      providesTags: ['OrgOffsets'],
+    }),
+    getOrgVouchers: builder.query<VoucherApiResponse, string>({
+      query: orgId => `/organisation/myvouchers/${orgId}`,
+      providesTags: ['OrgVouchers'],
+    }),
+
+    //Support Api
+    submitSupport: builder.mutation({
+      query: data => ({
+        url: `/contactus`,
+        method: 'POST',
+        body: data,
+      }),
+    }),
+
+    //Settings
+
+    removeSupervisor: builder.mutation({
+      query: empId => ({
+        url: `/organisation/supervisor/${empId}?add=false`,
+        method: 'PUT',
+      }),
+      invalidatesTags: ['Employees'],
+    }),
+    addSupervisor: builder.mutation({
+      query: empId => ({
+        url: `/organisation/supervisor/${empId}?add=true`,
+        method: 'PUT',
+      }),
+      invalidatesTags: ['Employees'],
+    }),
   }),
 });
 
@@ -91,4 +131,9 @@ export const {
   useGetOrgMachinesQuery,
   useGetCountriesQuery,
   useLazyGetStatesQuery,
+  useGetOrgOffsetsQuery,
+  useGetOrgVouchersQuery,
+  useSubmitSupportMutation,
+  useRemoveSupervisorMutation,
+  useAddSupervisorMutation,
 } = orgnaisationEndpoint;

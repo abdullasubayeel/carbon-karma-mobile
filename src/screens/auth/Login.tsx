@@ -73,9 +73,9 @@ function Login({navigation}: any) {
     setError('');
   }, [email, password]);
 
-  useEffect(() => {
-    SplashScreen.hide();
-  }, []);
+  // useEffect(() => {
+  //   SplashScreen.hide();
+  // }, []);
 
   return (
     <SafeAreaView style={authStyles.loginContainer}>

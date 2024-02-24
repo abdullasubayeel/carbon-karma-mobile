@@ -19,10 +19,6 @@ import MainStack from './src/navigation/MainStack';
 const Stack = createNativeStackNavigator();
 
 function App(): React.JSX.Element {
-  useEffect(() => {
-    SplashScreen.hide();
-  }, []);
-
   return (
     <GestureHandlerRootView style={{flex: 1}}>
       <AuthProvider>

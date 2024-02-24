@@ -4,31 +4,44 @@ import {orgStyles} from '../../styles/organizationStyles';
 import ExploreTile from './helpers/ExploreTile';
 import IoniIcons from 'react-native-vector-icons/Ionicons';
 import MateIcons from 'react-native-vector-icons/MaterialIcons';
+import FIcons from 'react-native-vector-icons/Feather';
 
 const Explore = () => {
   const exploreData = [
     {
       iconName: <MateIcons name="money" size={24} color={'#222'} />,
       color: '#CCEAE0',
-      navLink: 'offsets',
+      navLink: 'OffsetList',
       title: 'Offsets',
     },
+    // {
+    //   iconName: <MateIcons name="money" size={24} color={'#222'} />,
+    //   color: '#CCEAE0',
+    //   navLink: 'OffsetHistory',
+    //   title: 'Offset History',
+    // },
     {
       iconName: <MateIcons name="attach-money" size={24} color={'#222'} />,
       color: '#EBEBD1',
-      navLink: 'vouchers',
+      navLink: 'VoucherList',
       title: 'Vounchers',
+    },
+    {
+      iconName: <FIcons name="bell" size={24} color={'#222'} />,
+      color: '#FEDBBB',
+      navLink: 'Notifications',
+      title: 'Notifications',
     },
     {
       iconName: <MateIcons name="contact-support" size={24} color={'#222'} />,
       color: '#FEDBBB',
-      navLink: 'offsets',
+      navLink: 'Support',
       title: 'Support',
     },
     {
       iconName: <IoniIcons name="settings-outline" size={24} color={'#222'} />,
       color: '#FDEFC7',
-      navLink: 'offsets',
+      navLink: 'Settings',
       title: 'Settings',
     },
   ];

@@ -19,6 +19,13 @@ import OrgLayout from '../screens/organization';
 import UpdateProfile from '../screens/organization/profile/UpdateProfile';
 import OrgSurveyForm from '../screens/organization/surveys/form/OrgSurveyForm';
 import Explore from '../screens/organization/Explore';
+import OffsetLists from '../screens/organization/offsets/OffsetLists';
+import OffsetHistory from '../screens/organization/offsets/OffsetHistory';
+import Header from '../components/Header';
+import VoucherLists from '../screens/organization/vounchers/VoucherLists';
+import Support from '../screens/misc/Support';
+import Settings from '../screens/organization/Settings';
+import SplashScreen from 'react-native-splash-screen';
 
 const Stack = createStackNavigator();
 const MainStack = () => {
@@ -32,6 +39,7 @@ const MainStack = () => {
       } else {
         setOnline(false);
       }
+      SplashScreen.hide();
       setLoading(false);
     });
   }, []);
@@ -96,10 +104,54 @@ const MainStack = () => {
             <Stack.Screen name="Update Profile" component={UpdateProfile} />
             <Stack.Screen name="EmpDashboard" component={CarbonDashboard} />
             <Stack.Screen
+              name="OffsetList"
+              component={OffsetLists}
+              options={{
+                header: () => <Header heading="Offsets" />,
+                headerShadowVisible: false,
+              }}
+            />
+            <Stack.Screen
+              name="VoucherList"
+              component={VoucherLists}
+              options={{
+                header: () => <Header heading="Vouchers" />,
+
+                headerShadowVisible: false,
+              }}
+            />
+            <Stack.Screen
+              name="OffsetHistory"
+              component={OffsetHistory}
+              options={{
+                header: () => <Header heading="Offsets History" />,
+
+                headerShadowVisible: false,
+              }}
+            />
+            <Stack.Screen
               name="OrgExplore"
               component={Explore}
               options={{
                 headerShown: false,
+              }}
+            />
+            <Stack.Screen
+              name="Support"
+              component={Support}
+              options={{
+                header: () => <Header heading="Support" />,
+
+                headerShadowVisible: false,
+              }}
+            />
+            <Stack.Screen
+              name="Settings"
+              component={Settings}
+              options={{
+                header: () => <Header heading="Settings" />,
+
+                headerShadowVisible: false,
               }}
             />
           </>

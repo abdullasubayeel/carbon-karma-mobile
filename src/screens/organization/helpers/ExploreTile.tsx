@@ -1,7 +1,9 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {Pressable, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {COLORS} from '../../../constants/colors';
 import Icon from 'react-native-vector-icons/FontAwesome6';
+import {useNavigation} from '@react-navigation/native';
+import {StackNavigationProp} from '@react-navigation/stack';
 
 type ExploreTileTypes = {
   iconName: any;
@@ -9,14 +11,20 @@ type ExploreTileTypes = {
   navLink: string;
   title: string;
 };
+type RootStackParamList = {};
+
 const ExploreTile = ({iconName, color, navLink, title}: ExploreTileTypes) => {
+  const navigation = useNavigation<StackNavigationProp<any>>();
+
   return (
-    <View style={styles.tileContainer}>
+    <Pressable
+      style={styles.tileContainer}
+      onPress={() => navigation.navigate(navLink)}>
       <View style={[styles.iconContainer, {backgroundColor: color}]}>
         {iconName}
       </View>
       <Text style={styles.tileText}>{title}</Text>
-    </View>
+    </Pressable>
   );
 };
 

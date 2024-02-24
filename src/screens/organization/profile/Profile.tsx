@@ -82,9 +82,11 @@ const Profile = ({navigation}: any) => {
       </View>
       <View style={globalStyles.card}>
         <Text style={orgStyles.nameText}>Organisation</Text>
-        <Text style={orgStyles.title}>{orgData?.organisationName}</Text>
-        <Text style={orgStyles.small}>{orgData?.address}</Text>
-        <Text style={orgStyles.small}>{orgData?.sector}</Text>
+        <View>
+          <Text style={orgStyles.title}>{orgData?.organisationName}</Text>
+          <Text style={orgStyles.small}>{orgData?.address}</Text>
+          <Text style={orgStyles.small}>{orgData?.sector}</Text>
+        </View>
 
         {/* <TouchableOpacity>
           <Icon name="setting" color={COLORS.primaryColor} size={24} />

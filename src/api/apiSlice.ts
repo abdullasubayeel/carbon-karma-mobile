@@ -52,6 +52,7 @@ export const apiSlice = createApi({
   endpoints: builder => ({}),
   tagTypes: [
     'EmpTips',
+    'Employees',
     'Notifications',
     'EmpDashboard',
     'OrgDashboard',
@@ -62,5 +63,7 @@ export const apiSlice = createApi({
     'OrgMachines',
     'Countries',
     'States',
+    'OrgOffsets',
+    'OrgVouchers',
   ],
 });

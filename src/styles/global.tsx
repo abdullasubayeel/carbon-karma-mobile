@@ -18,16 +18,22 @@ export const globalStyles = StyleSheet.create({
     color: COLORS.primaryColor,
     fontSize: 16,
   },
+  lightText: {
+    fontWeight: '400',
+    color: '#aaa',
+    fontSize: 14,
+  },
 
   card: {
     borderRadius: 12,
     // borderWidth: 1,
     borderColor: COLORS.borderColor,
-    padding: 20,
+    padding: 12,
     elevation: 1,
     backgroundColor: COLORS.white,
     marginVertical: 8,
     position: 'relative',
+    gap: 12,
   },
   errorContainer: {
     borderRadius: 4,
