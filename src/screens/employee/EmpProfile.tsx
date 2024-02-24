@@ -1,33 +1,29 @@
 import {Image, ScrollView, StyleSheet, Text, View} from 'react-native';
 import React, {useContext} from 'react';
-import {orgStyles} from '../../../styles/organizationStyles';
-import {globalStyles} from '../../../styles/global';
+import {orgStyles} from '../../styles/organizationStyles';
+import {globalStyles} from '../../styles/global';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/AntDesign';
-import {COLORS} from '../../../constants/colors';
-import {
-  useGetEmployeeProfileQuery,
-  useGetOrgProfileQuery,
-} from '../../../api/endpoint/organizationEndpoint';
-import AuthContext from '../../../context/AuthProvider';
-import CustomActivityIndicator from '../../../components/CustomActivityIndicator';
+import {COLORS} from '../../constants/colors';
 
-const emission = require('../../../assets/images/emission.png');
-const leaf = require('../../../assets/images/leaf.png');
+import AuthContext from '../../context/AuthProvider';
+import CustomActivityIndicator from '../../components/CustomActivityIndicator';
+import {useGetEmployeeProfileQuery} from '../../api/endpoint/organizationEndpoint';
+
+const emission = require('../../assets/images/emission.png');
+const leaf = require('../../assets/images/leaf.png');
 // const emission = require('../../../assets/images/emission.png');
-const Profile = ({navigation}: any) => {
+const EmpProfile = ({navigation}: any) => {
   const {auth} = useContext(AuthContext);
+  console.log('-------------------', auth);
   const {data: profileData, isLoading: isEmpProfileLoading} =
     useGetEmployeeProfileQuery(auth._id);
-  const {data: orgData, isLoading: isOrgProfileLoading} = useGetOrgProfileQuery(
-    auth.ID,
-  );
 
   const updateNavigate = () => {
     navigation.navigate('Update Profile', {profileData});
   };
 
-  if (isOrgProfileLoading || isEmpProfileLoading) {
+  if (isEmpProfileLoading) {
     return (
       <CustomActivityIndicator
         message={'Getting your Profile info...'}
@@ -68,38 +64,22 @@ const Profile = ({navigation}: any) => {
             <View style={{alignItems: 'center'}}>
               <Image source={emission} style={orgStyles.imageIcon} />
               <Text style={[orgStyles.nameText, {textAlign: 'center'}]}>
-                {profileData?.carbon_emission} kg
+                {profileData?.carbon_emission.toFixed(2)} kg
               </Text>
             </View>
             <View style={{alignItems: 'center'}}>
               <Image source={leaf} style={orgStyles.imageIcon} />
               <Text style={[orgStyles.nameText, {textAlign: 'center'}]}>
-                {profileData?.karma_points} pts
+                {profileData?.karma_points.toFixed(2)} pts
               </Text>
             </View>
           </View>
         </View>
       </View>
-      <View style={globalStyles.card}>
-        <Text style={orgStyles.nameText}>Organisation</Text>
-        <View>
-          <Text style={orgStyles.title}>{orgData?.organisationName}</Text>
-          <Text style={orgStyles.small}>{orgData?.address}</Text>
-          <Text style={orgStyles.small}>{orgData?.sector}</Text>
-        </View>
-
-        {/* <TouchableOpacity>
-          <Icon name="setting" color={COLORS.primaryColor} size={24} />
-        </TouchableOpacity> */}
-        <Image
-          source={{uri: orgData?.logo}}
-          style={orgStyles.orgImage}
-          resizeMode="contain"></Image>
-      </View>
     </ScrollView>
   );
 };
 
-export default Profile;
+export default EmpProfile;
 
 const styles = StyleSheet.create({});

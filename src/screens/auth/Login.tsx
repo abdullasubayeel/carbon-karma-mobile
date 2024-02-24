@@ -45,11 +45,22 @@ function Login({navigation}: any) {
     })
       .unwrap()
       .then((res: any) => {
-        console.log('resss', res);
-        if (res?.user) {
+        console.log('loginnnn resss', res);
+        if (res?.user.role === 'head') {
           setAuth(res.user);
+          storeAsyncData('user', JSON.stringify(res.user));
+        } else if (res?.user.role === 'employee') {
+          const userData = {
+            ID: res?.user.all.organisationID,
+            _id: res.user.all._id,
+            email: res?.user.email,
+            refresh_token: res?.user.refresh_token,
+            role: res?.user.role,
+            token: res?.user.token,
+          };
+          setAuth(userData);
+          storeAsyncData('user', JSON.stringify(userData));
         }
-        storeAsyncData('user', JSON.stringify(res.user));
         dispatch(
           loginAction({
             email: res.user.email,
@@ -73,9 +84,9 @@ function Login({navigation}: any) {
     setError('');
   }, [email, password]);
 
-  // useEffect(() => {
-  //   SplashScreen.hide();
-  // }, []);
+  useEffect(() => {
+    SplashScreen.hide();
+  }, []);
 
   return (
     <SafeAreaView style={authStyles.loginContainer}>

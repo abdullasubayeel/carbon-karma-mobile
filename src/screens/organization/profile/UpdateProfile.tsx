@@ -5,6 +5,7 @@ import {
   ScrollView,
   StyleSheet,
   Text,
+  ToastAndroid,
   View,
 } from 'react-native';
 import React, {useContext, useEffect, useRef, useState} from 'react';
@@ -66,6 +67,9 @@ const UpdateProfile = ({route}: any) => {
         empId: auth._id,
         logo: selectedImage.uri,
       }).unwrap();
+      if (response) {
+        ToastAndroid.show('Profile Updated Successfully', ToastAndroid.SHORT);
+      }
     } catch (error) {
       setError('Something went wrong');
       console.log('Error:', error);

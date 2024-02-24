@@ -1,3 +1,4 @@
+import {EmployeeSurveysResponse} from '../../enums/employee';
 import {apiSlice} from '../apiSlice';
 
 const employeeEndpoint = apiSlice.injectEndpoints({
@@ -6,13 +7,10 @@ const employeeEndpoint = apiSlice.injectEndpoints({
       query: () => `/auth/employee/tips`,
       providesTags: ['EmpTips'],
     }),
-    getMyRedeemRequests: builder.query({
-      query: () => `/auth/employee/tips`,
-      providesTags: ['RedeemRequests'],
-    }),
+
     getEmployeeDashboard: builder.mutation({
       query: data => ({
-        url: `/user/developer`,
+        url: `/auth/employee/dashboard`,
         method: 'POST',
         body: data,
       }),
@@ -21,8 +19,5 @@ const employeeEndpoint = apiSlice.injectEndpoints({
   }),
 });
 
-export const {
-  useGetEmployeeDashboardMutation,
-  useGetMyRedeemRequestsQuery,
-  useGetTipsQuery,
-} = employeeEndpoint;
+export const {useGetEmployeeDashboardMutation, useGetTipsQuery} =
+  employeeEndpoint;

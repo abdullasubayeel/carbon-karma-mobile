@@ -65,5 +65,6 @@ export const apiSlice = createApi({
     'States',
     'OrgOffsets',
     'OrgVouchers',
+    'EmpSubmittedSurveys',
   ],
 });

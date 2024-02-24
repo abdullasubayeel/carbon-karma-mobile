@@ -9,7 +9,7 @@ import ForgotPassword from '../screens/auth/ForgotPassword';
 
 import OrgSurveyDashboard from '../screens/organization/surveys/OrgSurveyDashboard';
 import OrgSurveyDetails from '../screens/organization/surveys/helpers/OrgSurveyDetails';
-import CarbonDashboard from '../screens/employee/CarbonDashboard';
+import EmpDashboard from '../screens/employee/EmpDashboard';
 import NetInfo from '@react-native-community/netinfo';
 import CustomActivityIndicator from '../components/CustomActivityIndicator';
 import Offline from '../screens/misc/Offline';
@@ -26,6 +26,10 @@ import VoucherLists from '../screens/organization/vounchers/VoucherLists';
 import Support from '../screens/misc/Support';
 import Settings from '../screens/organization/Settings';
 import SplashScreen from 'react-native-splash-screen';
+import EmpLayout from '../screens/employee';
+import EmpHeader from '../screens/employee/helpers/EmpHeader';
+import EmpSurveyDetails from '../screens/employee/helpers/EmpSurveyDetails';
+import EmpSurveyForm from '../screens/employee/surveys/form/EmpSurveyForm';
 
 const Stack = createStackNavigator();
 const MainStack = () => {
@@ -102,7 +106,7 @@ const MainStack = () => {
               }}
             />
             <Stack.Screen name="Update Profile" component={UpdateProfile} />
-            <Stack.Screen name="EmpDashboard" component={CarbonDashboard} />
+
             <Stack.Screen
               name="OffsetList"
               component={OffsetLists}
@@ -152,6 +156,29 @@ const MainStack = () => {
                 header: () => <Header heading="Settings" />,
 
                 headerShadowVisible: false,
+              }}
+            />
+
+            {/* Employee Route */}
+            <Stack.Screen
+              name="EmpDashboard"
+              component={EmpLayout}
+              options={{
+                headerShown: false,
+              }}
+            />
+            <Stack.Screen
+              name="EmpSurveysDetails"
+              component={EmpSurveyDetails}
+              options={{
+                headerShown: false,
+              }}
+            />
+            <Stack.Screen
+              name="EmpSurveyForm"
+              component={EmpSurveyForm}
+              options={{
+                headerShown: false,
               }}
             />
           </>

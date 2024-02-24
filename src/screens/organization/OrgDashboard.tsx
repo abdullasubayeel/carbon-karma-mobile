@@ -141,7 +141,7 @@ const OrgDashboard = ({navigation}: any) => {
     async function getDashboard() {
       const response = await getOrgDashboard({
         fromDate: '2023-07-18T05:54:59.154Z',
-        organizationId: '6592c65302082856df0e51e2',
+        organizationId: auth.ID,
         toDate: '2024-02-18T05:54:59.154Z',
       }).unwrap();
 
