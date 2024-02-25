@@ -1,4 +1,4 @@
-import {EmployeeSurveysResponse} from '../../enums/employee';
+import {EmpDashboardPayload, EmployeeDashboardType} from '../../enums/employee';
 import {apiSlice} from '../apiSlice';
 
 const employeeEndpoint = apiSlice.injectEndpoints({
@@ -8,7 +8,10 @@ const employeeEndpoint = apiSlice.injectEndpoints({
       providesTags: ['EmpTips'],
     }),
 
-    getEmployeeDashboard: builder.mutation({
+    getEmployeeDashboard: builder.mutation<
+      EmployeeDashboardType,
+      EmpDashboardPayload
+    >({
       query: data => ({
         url: `/auth/employee/dashboard`,
         method: 'POST',

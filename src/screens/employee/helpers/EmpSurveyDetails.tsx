@@ -61,35 +61,20 @@ const EmpSurveyDetails = ({route, navigation}: any) => {
           </View>
 
           {/* Commutation */}
-          {/* <View
-            style={[surveyStyles.surveyDetailsCard, {flexDirection: 'column'}]}>
-            <Text style={surveyStyles.largeText}>Utilities</Text>
+          <View
+            style={[
+              surveyStyles.surveyDetailsCard,
+              {flexDirection: 'column', minHeight: 120},
+            ]}>
+            <Text style={[surveyStyles.largeText]}>Commutation</Text>
             <Text style={[surveyStyles.boldText, {marginBottom: 20}]}>
-              Total Emission:{' '}
-              {surveyDetails[0]..carbonEmission.toFixed(2)} kg
+              Total Trips taken : {surveyDetails[0].trips.length}
             </Text>
             <View>
-              <Text style={surveyStyles.smallText}>
-                No. of Reams : {surveyDetails[0].utility.paper.paperReams}
-              </Text>
-              <Text style={surveyStyles.smallText}>
-                {surveyDetails[0].utility.paperCup.type} Cups:{' '}
-                {surveyDetails[0].utility.paperCup.paperCupBundles} x 30
-              </Text>
-              <Text style={surveyStyles.smallText}>
-                Plastic Cups:{' '}
-                {surveyDetails[0].utility.plasticCup.plasticCupBundles === 0
-                  ? 0
-                  : surveyDetails[0].utility.plasticCup.plasticCupBundles +
-                    'x 30'}
-              </Text>
-              <Text style={surveyStyles.smallText}>
-                {surveyDetails[0].utility.tissue.tissueType} Plys:{' '}
-                {surveyDetails[0].utility.tissue.tissueBundles} x 50
-              </Text>
+              <Text style={surveyStyles.smallText}></Text>
             </View>
-            <Image source={houshold} style={surveyStyles.surveyImage} />
-          </View> */}
+            <Image source={transport} style={surveyStyles.surveyImage} />
+          </View>
 
           {/* Household */}
           <View
@@ -114,7 +99,10 @@ const EmpSurveyDetails = ({route, navigation}: any) => {
               </Text>
             </View>
 
-            <Image source={houshold} style={surveyStyles.surveyImage} />
+            <Image
+              source={houshold}
+              style={[surveyStyles.surveyImage, {height: 100, top: 16}]}
+            />
           </View>
         </View>
       )}

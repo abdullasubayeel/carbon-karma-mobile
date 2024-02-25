@@ -53,7 +53,7 @@ const EmpDashboard = ({navigation}: any) => {
     ) ?? 0;
   const series = [vehicleEmission, houseEmission, electricityEmission];
   var seriesSum = vehicleEmission + houseEmission + electricityEmission;
-  const sliceColor = ['#fbd203', '#278d83', '#ff5e00'];
+  const sliceColor = ['#fbd203', '#ff5e00', '#278d83'];
   // const lineChartData = [{value: 50}, {value: 80}, {value: 90}];
   const lineChartData = dashboardData?.carbonEmission.map(obj => {
     return {
@@ -130,7 +130,7 @@ const EmpDashboard = ({navigation}: any) => {
                 <View>
                   <Text>Transport</Text>
                   <Text style={employeeStyles.boldText}>
-                    {vehicleEmission} kg
+                    {vehicleEmission.toFixed(2)} kg
                   </Text>
                 </View>
               </View>
@@ -150,7 +150,7 @@ const EmpDashboard = ({navigation}: any) => {
                 <View style={{flex: 1}}>
                   <Text>House</Text>
                   <Text style={employeeStyles.boldText}>
-                    {houseEmission} kg
+                    {houseEmission.toFixed(2)} kg
                   </Text>
                 </View>
               </View>

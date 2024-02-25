@@ -23,7 +23,7 @@ const CustomSelect = ({
           placeholder: styles.placeholder,
         }}
       />
-      {selectedValue && <Text>Selected: {selectedValue}</Text>}
+      {/* {selectedValue && <Text>Selected: {selectedValue}</Text>} */}
     </View>
   );
 };

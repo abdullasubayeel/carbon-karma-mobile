@@ -69,7 +69,7 @@ const EmpMonthView = ({submittedSurveys, year, navigation}: any) => {
       showAlert(monthName, 'Electricity survey data is missing', 1);
       return;
     } else if (!Object.keys(curSurvey.surveyDetails).includes('household')) {
-      showAlert(monthName, 'household survey data is missing', 2);
+      showAlert(monthName, 'Household survey data is missing', 2);
       return;
     }
 
