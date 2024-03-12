@@ -28,7 +28,7 @@ const OrgSurveyDashboard = ({navigation}: any) => {
     }
     setMonthIndex(curIndex => curIndex - 1);
   };
-  console.log('org survey', submittedSurveys?.orgSurveys);
+
   if (isSurveyLoading) {
     return (
       <CustomActivityIndicator size="large" message="Fetching all surveys..." />

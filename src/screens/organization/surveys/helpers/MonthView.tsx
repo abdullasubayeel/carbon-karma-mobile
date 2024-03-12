@@ -33,7 +33,6 @@ const MonthView = ({submittedSurveys, year, navigation}: any) => {
   const avlMonths = submittedSurveys?.map((obj: any) =>
     moment(obj.date).format('MMM/YYYY'),
   );
-  console.log('mmm', submittedSurveys);
 
   function getElapsedMonthsList() {
     // Get the current date
@@ -51,7 +50,7 @@ const MonthView = ({submittedSurveys, year, navigation}: any) => {
     return elapsedMonthsList;
   }
   const elapsedMonths = getElapsedMonthsList();
-  console.log(elapsedMonths);
+
   const detailsNavigate = (monthName: string) => {
     const curSurvey = submittedSurveys.find(
       (obj: any) =>
