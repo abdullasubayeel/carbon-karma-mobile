@@ -16,23 +16,24 @@ type MonthViewProps = {
 };
 const MonthView = ({submittedSurveys, year, navigation}: any) => {
   const months = [
-    'Jan',
-    'Feb',
-    'Mar',
-    'Apr',
-    'May',
-    'Jun',
-    'Jul',
-    'Aug',
-    'Sep',
-    'Oct',
-    'Nov',
-    'Dec',
+    {month: 'Jan', year},
+    {month: 'Feb', year},
+    {month: 'Mar', year},
+    {month: 'Apr', year},
+    {month: 'May', year},
+    {month: 'Jun', year},
+    {month: 'Jul', year},
+    {month: 'Aug', year},
+    {month: 'Sep', year},
+    {month: 'Oct', year},
+    {month: 'Nov', year},
+    {month: 'Dec', year},
   ];
 
   const avlMonths = submittedSurveys?.map((obj: any) =>
-    moment(obj.date).format('MMM'),
+    moment(obj.date).format('MMM/YYYY'),
   );
+  console.log('mmm', submittedSurveys);
 
   function getElapsedMonthsList() {
     // Get the current date
@@ -50,7 +51,7 @@ const MonthView = ({submittedSurveys, year, navigation}: any) => {
     return elapsedMonthsList;
   }
   const elapsedMonths = getElapsedMonthsList();
-
+  console.log(elapsedMonths);
   const detailsNavigate = (monthName: string) => {
     const curSurvey = submittedSurveys.find(
       (obj: any) =>
@@ -112,10 +113,13 @@ const MonthView = ({submittedSurveys, year, navigation}: any) => {
         <TouchableOpacity
           key={index}
           style={styles.monthContainer}
-          onPress={() => detailsNavigate(month)}>
-          <Text style={styles.monthText}>{month}</Text>
+          onPress={() => detailsNavigate(month.month)}>
+          <Text style={styles.monthText}>{month.month}</Text>
           <View
-            style={[styles.dot, avlMonths.includes(month) && styles.activeDot]}
+            style={[
+              styles.dot,
+              avlMonths.includes(`${month.month}/${year}`) && styles.activeDot,
+            ]}
           />
         </TouchableOpacity>
       ))}

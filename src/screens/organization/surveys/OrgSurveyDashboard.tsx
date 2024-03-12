@@ -82,10 +82,8 @@ const OrgSurveyDashboard = ({navigation}: any) => {
                   Transport
                 </Text>
                 <Text style={surveyStyles.centeredText}>
-                  {
-                    submittedSurveys?.orgSurveys[monthIndex]?.surveyDetails
-                      .transport.carbonEmission
-                  }
+                  {submittedSurveys?.orgSurveys[monthIndex]?.surveyDetails
+                    .transport?.carbonEmission ?? 0}
                   kg
                 </Text>
               </View>
@@ -134,7 +132,7 @@ const OrgSurveyDashboard = ({navigation}: any) => {
         )}
         <View style={globalStyles.row}>
           <Text style={[surveyStyles.largeText]}>Submitted Surveys</Text>
-          <Text style={surveyStyles.boldText}>
+          <Text style={surveyStyles.largeText}>
             {moment(submittedSurveys?.orgSurveys[monthIndex]?.date).format(
               'YYYY',
             )}
@@ -143,7 +141,9 @@ const OrgSurveyDashboard = ({navigation}: any) => {
         <Text>Choose the month to submit/view the surveys</Text>
         <MonthView
           navigation={navigation}
-          year="2024"
+          year={moment(submittedSurveys?.orgSurveys[monthIndex]?.date).format(
+            'YYYY',
+          )}
           submittedSurveys={submittedSurveys?.orgSurveys.map(
             (curObj: any) => curObj,
           )}
